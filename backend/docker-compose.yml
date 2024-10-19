@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  tappd-simulator:
+    image: phalanetwork/tappd-simulator:latest
+    ports:
+      - "8090:8090"
+
+  daip-service:
+    build: .
+    ports:
+      - "9001:9001"
+    depends_on:
+      - tappd-simulator
+    environment:
+      # URL for the daip-service to access tappd-simulator
+      - TAPPD_SIMULATOR_URL=http://tappd-simulator:8090
+
