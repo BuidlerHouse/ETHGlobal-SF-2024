@@ -15,7 +15,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY .env.local ./
 COPY .env ./
-COPY next.config.js ./
+COPY next.config.mjs ./
 
 RUN npm install
 
@@ -31,7 +31,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY --from=builder /app/.env.local ./.env.local
 COPY --from=builder /app/.env ./.env
-COPY --from=builder /app/next.config.js ./next.config.js
+COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
 RUN npm install --only=production
 
