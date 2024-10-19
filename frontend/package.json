@@ -1,0 +1,45 @@
+{
+    "name": "eth-global-sf-2024",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "prisma generate && next dev",
+        "build": "prisma generate && next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@dynamic-labs/ethereum": "^3.4.0",
+        "@dynamic-labs/flow": "^3.4.0",
+        "@dynamic-labs/sdk-react-core": "^3.4.0",
+        "@prisma/client": "^5.12.1",
+        "daisyui": "^4.10.1",
+        "date-fns": "^3.6.0",
+        "ethereumjs-util": "^7.1.5",
+        "ethers": "^6.11.1",
+        "jsonwebtoken": "^9.0.2",
+        "next": "14.2.3",
+        "next-auth": "^4.24.7",
+        "pino-pretty": "^11.0.0",
+        "react": "^18",
+        "react-date-picker": "^10.6.0",
+        "react-dom": "^18",
+        "sharp": "^0.33.3",
+        "viem": "1"
+    },
+    "devDependencies": {
+        "@types/jsonwebtoken": "^9.0.6",
+        "@types/node": "^20",
+        "@types/pg": "^8.11.5",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "autoprefixer": "^10.0.1",
+        "eslint": "^8",
+        "eslint-config-next": "14.1.4",
+        "postcss": "^8",
+        "prisma": "^5.12.1",
+        "tailwindcss": "^3.3.0",
+        "typescript": "^5",
+        "vercel": "^34.0.0"
+    }
+}
