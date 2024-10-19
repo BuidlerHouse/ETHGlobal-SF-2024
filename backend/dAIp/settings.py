@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*'] # TODO: change this to the domain name
 
 INSTALLED_APPS = [
     'simpleui',
-    
+
     'rest_framework',
     'core',
     'django.contrib.admin',
@@ -41,6 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:9001',
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://daip.buidler.house'
 ]
 
 MIDDLEWARE = [
