@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server"
-import { validateJWT } from "@/lib/authHelpers"
+import { validateJWT } from "../../../lib/authHelpers"
 
 export async function GET(req: NextRequest) {
     const token = req.headers.get("authorization")?.split(" ")[1]

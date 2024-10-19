@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic"
-import { User } from "@/lib/auth"
-import prisma from "@/lib/prisma/db"
+import { User } from "../../../../lib/auth"
+import prisma from "../../../../lib/prisma/db"
 
 export async function GET(request: Request) {
     try {
