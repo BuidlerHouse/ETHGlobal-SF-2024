@@ -48,4 +48,4 @@ Bring AI and Web3 together to enable a user-owned internet that guarantees priva
 
 Code path: backend/dAIp/contracts/near/README.md
 Smart contract on testnet: daip.prelaunch.testnet
-
+https://explorer.testnet.near.org/transactions/5DPew78Fk5pGmXXofXc3SugBvrGejQqHXg1hnnPcC8Dj

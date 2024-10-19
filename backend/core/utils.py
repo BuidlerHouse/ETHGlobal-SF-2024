@@ -2,8 +2,8 @@ import base64
 
 
 FULL_NODE_URL = "https://fullnode.testnet.sui.io:443"
-PATH_TO_WALRUS = "../core/walrus"
-PATH_TO_WALRUS_CONFIG = "../core/client_config.yaml"
+PATH_TO_WALRUS = "core/walrus"
+PATH_TO_WALRUS_CONFIG = "core/client_config.yaml"
 
 
 # Convert a numeric (u256) blob_id to a base64 encoded Blob ID
