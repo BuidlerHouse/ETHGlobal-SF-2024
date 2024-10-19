@@ -1,6 +1,6 @@
 "use client"
 
-import { authUser } from "../lib/request"
+import { authUser } from "@/lib/request"
 import React, { createContext, useContext, useEffect, useState } from "react"
 
 export type UserType = {
