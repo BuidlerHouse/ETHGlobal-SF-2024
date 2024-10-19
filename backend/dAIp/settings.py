@@ -47,7 +47,9 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:9001',
     'http://localhost:3000',
     'http://localhost:3001',
-    'https://daip.buidler.house'
+    'https://daip.buidler.house',
+    'https://www.daip.xyz',
+    'https://daip.xyz',
 ]
 
 MIDDLEWARE = [
