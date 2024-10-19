@@ -6,7 +6,6 @@
 
 dAIp is a website builder for creating composable, IP-protected Dapps, empowering builders' monetization through AI and royalties.
 
-
 **dAIp: AI-enhanced Dapp Creation, Unlocking Web3's Full Potential**
 
 TL;DR: dAIp is a website builder for creating composable, IP-protected Dapps, empowering builders' monetization through AI and royalties.
@@ -40,3 +39,13 @@ docker-compose up
 ```
 
 View the API at http://0.0.0.0:9001/core/tee/
+
+### Near Protocol
+
+User owned AI is Near
+Bring AI and Web3 together to enable a user-owned internet that guarantees privacy and ownership of data and assets, where everyone can be a builder. Some ideas to explore:
+* Build autonomous agents and explore their on-chain interaction on Near
+
+Code path: backend/dAIp/contracts/near/README.md
+Smart contract on testnet: daip.prelaunch.testnet
+
