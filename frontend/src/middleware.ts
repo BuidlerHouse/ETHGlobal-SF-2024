@@ -2,9 +2,7 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-const allowedOrigins = [
-    "http://localhost:3000",
-]
+const allowedOrigins = ["http://localhost:3000", "https://daip.xyz", "https://www.daip.xyz"]
 
 const corsOptions = {
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
