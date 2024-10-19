@@ -17,11 +17,12 @@ COPY .env.local ./
 COPY .env ./
 COPY next.config.mjs ./
 
-RUN npm install
+RUN npm install yarn
+RUN yarn install
 
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
 # Stage 2: Run the application
 FROM node:18.17.0-alpine
@@ -33,11 +34,11 @@ COPY --from=builder /app/.env.local ./.env.local
 COPY --from=builder /app/.env ./.env
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
-RUN npm install --only=production
+RUN yarn install --only=production
 
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
