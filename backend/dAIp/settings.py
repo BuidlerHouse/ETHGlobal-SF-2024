@@ -140,3 +140,8 @@ SIMPLEUI_HOME_ACTION = True
 SIMPLEUI_HOME_INFO = False
 SIMPLEUI_ANALYSIS = False
 SIMPLEPRO_MONIT_DISPLAY = True
+SIMPLEUI_ICON = {
+    'Code blocks': 'fa fa-code',
+    'Code Block Views': 'fa fa-sitemap',
+    'Core': 'fa fa-cog',
+}

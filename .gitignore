@@ -840,3 +840,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/python,solidity,macos,windows,linux,vs,node,nextjs
 backend/env.sh
 backend/index.html
+backend/*/migrations/0*.py
