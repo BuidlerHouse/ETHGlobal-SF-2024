@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest) {
         return new Response("Authorization token required", { status: 401 })
     }
 
-    const apiResponse = await fetch(`${req.nextUrl.origin}/api/validate`, {
+    const apiResponse = await fetch(`https://daip.xyz/api/validate`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
