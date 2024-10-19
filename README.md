@@ -4,4 +4,4 @@
 
 ## Introduction
 
-dAIp is a website builder for creating composable, IP-protected Dapps, empowering developers' monetization through AI and royalties.
+dAIp is a website builder for creating composable, IP-protected Dapps, empowering builders' monetization through AI and royalties.
