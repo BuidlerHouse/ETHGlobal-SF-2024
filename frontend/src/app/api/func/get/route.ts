@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic"
-import { User } from "../../../../lib/auth"
+import { User } from "../../../../library/auth"
 import { Message } from "postcss"
 
 export async function POST(request: Request) {
