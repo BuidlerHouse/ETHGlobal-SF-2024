@@ -21,3 +21,5 @@ Key Functions of dAIp:
 **IP Dispute Resolution**: A decentralized system to handle any IP disputes within the ecosystem, ensuring fairness and protection of creator rights.
 
 **Royalty Distribution**: dAIp enables creators to embed royalty mechanisms directly into their templates, allowing them to earn from future use and iterations of their work.
+
+**Grouping of Templates**: Multiple templates can be grouped together to create complex Dapps, enabling seamless collaboration across different functionalities.
