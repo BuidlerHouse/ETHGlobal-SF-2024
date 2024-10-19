@@ -14,6 +14,7 @@ mod util;
 pub const VERSION_CODE: &str  = "v1.0.0";
 pub const GAS_FOR_CALL: Gas = Gas(parse_gas!("20 Tgas") as u64);
 
+#[derive(BorshDeserialize, BorshSerialize)]
 pub struct Conversation {
     pub messages: String,
     pub role: String,
@@ -83,10 +84,14 @@ impl Contract {
             env::panic_str("Message too long");
         }
         let conversation = Conversation {
-            messages: message,
+            messages: message.clone(),
             role: "system".to_string(),
         };
-        self.request.insert(&full_request_id, &conversation);
+        let mut conversations = self.request.get(&full_request_id).unwrap_or_else(|| {
+            Vector::new(StorageKey::RequestsConversation { request_id: full_request_id.clone() })
+        });
+        conversations.push(&conversation);
+        self.request.insert(&full_request_id, &conversations);
         let token_left = self.max_token_output_length - (message.len() as u128);
         let request_wallet = self.request_wallet.get(&full_request_id).unwrap();
         if token_left > 0 {
