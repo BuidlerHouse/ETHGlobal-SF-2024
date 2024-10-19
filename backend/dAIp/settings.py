@@ -31,6 +31,10 @@ ALLOWED_HOSTS = ['*'] # TODO: change this to the domain name
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
+    
+    'rest_framework',
+    'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

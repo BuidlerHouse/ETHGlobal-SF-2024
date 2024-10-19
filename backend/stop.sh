@@ -1,1 +1,1 @@
-ps aux | grep 'python manage.py runserver 0.0.0.0:9001' | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep 'python3 manage.py runserver 0.0.0.0:9001' | grep -v grep | awk '{print $2}' | xargs kill
