@@ -84,7 +84,7 @@ impl Contract {
             env::panic_str("Message too long");
         }
         let conversation = Conversation {
-            messages: message,
+            messages: message.clone(),
             role: "system".to_string(),
         };
         let mut conversations = self.request.get(&full_request_id).unwrap_or_else(|| {
