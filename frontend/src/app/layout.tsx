@@ -19,10 +19,9 @@ const config = createConfig({
     chains: [iliad],
     multiInjectedProviderDiscovery: false,
     transports: {
-        [iliad.id]: http()
-    }
+        [iliad.id]: http(),
+    },
 })
-
 
 export default function RootLayout({
     children,
@@ -32,19 +31,14 @@ export default function RootLayout({
     return (
         <html lang="en" data-theme="lofi">
             <body className="">
-                    
-                        
-                            <UserProvider>
-                                <NotificationProvider>
-                                    <DynamicProvider>
-                                    
-                                        {children}
-                                        {/* <ThemeDropDown /> */}
-                                    </DynamicProvider>
-                                </NotificationProvider>
-                            </UserProvider>
-                            
-                    
+                <UserProvider>
+                    <NotificationProvider>
+                        <DynamicProvider>
+                            {children}
+                            {/* <ThemeDropDown /> */}
+                        </DynamicProvider>
+                    </NotificationProvider>
+                </UserProvider>
             </body>
         </html>
     )
