@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 @admin.register(CodeBlock)
 class CodeBlockAdmin(admin.ModelAdmin):
-    list_display = ('wallet_address', 'code', 'created_at', 'updated_at')
+    list_display = ('wallet_address', 'token_id', 'code', 'created_at', 'updated_at')
     list_filter = ('wallet_address', 'created_at', 'updated_at')
     search_fields = ('wallet_address', 'code')
     readonly_fields = ('created_at', 'updated_at')
