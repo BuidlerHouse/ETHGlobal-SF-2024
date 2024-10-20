@@ -57,6 +57,7 @@ impl Contract {
         self.price_per_token = price;
     }
 
+    #[payable]
     pub fn chat(&mut self, request_id: String, message: String) {
         let required_deposit = (message.len() as u128) * self.price_per_token + self.max_token_output_length * self.price_per_token;
         // TODO: pre-payment for max token output length
@@ -78,7 +79,8 @@ impl Contract {
             Promise::new(env::predecessor_account_id()).transfer(attached_deposit - required_deposit);
         }
     }
-
+    
+    #[payable]
     pub fn reply(&mut self, full_request_id: String, message: String) {
         assert_eq!(env::signer_account_id(), self.owner, "Forbidden");
         if message.len() as u128 > self.max_token_output_length {
@@ -105,4 +107,17 @@ impl Contract {
         let full_request_id = format!("{}_{}", signer_account_id, request_id);
         full_request_id
     }
+
+    // pub fn get_chat_history(&self, full_request_id: String) -> Vec<Conversation> {
+    //     let conversations = self.request.get(&full_request_id)
+    //         .unwrap_or_else(|| {
+    //             Vector::new(StorageKey::RequestsConversation { request_id: full_request_id.clone() })
+    //         });
+    //     conversations.iter().map(|conversation| {
+    //         json!({
+    //             "role": conversation.role,
+    //             "messages": conversation.messages
+    //         })
+    //     }).collect::<Vec<_>>()
+    // }
 }

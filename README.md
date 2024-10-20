@@ -49,3 +49,13 @@ Bring AI and Web3 together to enable a user-owned internet that guarantees priva
 Code path: backend/dAIp/contracts/near/README.md
 Smart contract on testnet: daip.prelaunch.testnet
 https://explorer.testnet.near.org/transactions/5DPew78Fk5pGmXXofXc3SugBvrGejQqHXg1hnnPcC8Dj
+
+1. Chat:
+https://explorer.testnet.near.org/transactions/2b9KTxb8z5oGrbmbsQgQVrGya7mCY2y87ysrVXQfaBxz
+
+2. Reply by anonymous service provider:
+https://explorer.testnet.near.org/transactions/B3P4RSF3VPGnE4siNbbf8rhiRmynq1MEiAjGx9R1n32y
+
+3. Fetch chat history:
+
+Takeaway:Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error
