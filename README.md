@@ -56,8 +56,8 @@ https://explorer.testnet.near.org/transactions/B3P4RSF3VPGnE4siNbbf8rhiRmynq1MEi
 
 Takeaway:
 We find a bug while functionCall()
-rnative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+
+```bash
 Scheduling a call: daip.prelaunch.testnet.new()
 Doing account.functionCall()
 Receipt: FA8Xa2f6QdR97R8vPctShyazuYHquoyJZMa8HsMDnBtj
@@ -70,7 +70,9 @@ ServerTransactionError: Error happened while deserializing the module
     at async Object.handler (/usr/local/lib/node_modules/near-cli/utils/exit-on-error.js:52:9) {
   type: 'Deserialization',
   context: undefined,
-Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error
+```
+
+Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error.
 
 ### Walrus
 
