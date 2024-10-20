@@ -3,7 +3,7 @@ from .models import CodeBlock
 class CodeBlockSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
     parent = serializers.CharField(required=False, allow_null=True)
-    parent_token_id = serializers.CharField(required=False, allow_null=True)
+    parent_token_id = serializers.SerializerMethodField()
 
     class Meta:
         model = CodeBlock
