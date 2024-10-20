@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*'] # TODO: change this to the domain name
 
 INSTALLED_APPS = [
     'simpleui',
-
+    'corsheaders',
     'rest_framework',
     'core',
     'django.contrib.admin',
@@ -53,6 +53,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'dAIp.urls'
 
 TEMPLATES = [
