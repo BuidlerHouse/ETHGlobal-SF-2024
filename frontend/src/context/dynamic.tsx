@@ -1,67 +1,71 @@
 "use client"
 
 import React from "react"
-import { DynamicContextProvider, getAuthToken } from "@dynamic-labs/sdk-react-core"
+import { DynamicContextProvider, getAuthToken, DynamicWidget } from "@dynamic-labs/sdk-react-core"
 import { getCsrfToken } from "next-auth/react"
 import { useUser } from "./userContext"
 // https://docs.dynamic.xyz/sdks/react-sdk/providers/dynamiccontextprovider#initiate-dynamic-with-ethereum-and-starknet-wallets-enabled
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum"
 import { FlowWalletConnectors } from "@dynamic-labs/flow"
-
+import { createConfig, http, WagmiProvider } from "wagmi"
+import { iliad } from "@story-protocol/core-sdk"
+import { QueryClient } from "@tanstack/query-core"
+import { QueryClientProvider } from "@tanstack/react-query"
+import { DynamicWagmiConnector } from '@dynamic-labs/wagmi-connector';
 interface AppProps {
     children: React.ReactNode
 }
 const evmNetworks = [
-    {
-      blockExplorerUrls: ['https://etherscan.io/'],
-      chainId: 1,
-      chainName: 'Ethereum Mainnet',
-      iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
-      name: 'Ethereum',
-      nativeCurrency: {
-        decimals: 18,
-        name: 'Ether',
-        symbol: 'ETH',
-        iconUrl: 'https://app.dynamic.xyz/assets/networks/eth.svg',
-      },
-      networkId: 1,
+//     {
+//       blockExplorerUrls: ['https://etherscan.io/'],
+//       chainId: 1,
+//       chainName: 'Ethereum Mainnet',
+//       iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
+//       name: 'Ethereum',
+//       nativeCurrency: {
+//         decimals: 18,
+//         name: 'Ether',
+//         symbol: 'ETH',
+//         iconUrl: 'https://app.dynamic.xyz/assets/networks/eth.svg',
+//       },
+//       networkId: 1,
   
-      rpcUrls: ['https://mainnet.infura.io/v3/'],
-      vanityName: 'ETH Mainnet',
-    },
-  {
-      blockExplorerUrls: ['https://etherscan.io/'],
-      chainId: 5,
-      chainName: 'Ethereum Goerli',
-      iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
-      name: 'Ethereum',
-      nativeCurrency: {
-        decimals: 18,
-        name: 'Ether',
-        symbol: 'ETH',
-        iconUrl: 'https://app.dynamic.xyz/assets/networks/eth.svg',
-      },
-      networkId: 5,
-      rpcUrls: ['https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'],
+//       rpcUrls: ['https://mainnet.infura.io/v3/'],
+//       vanityName: 'ETH Mainnet',
+//     },
+//   {
+//       blockExplorerUrls: ['https://etherscan.io/'],
+//       chainId: 5,
+//       chainName: 'Ethereum Goerli',
+//       iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
+//       name: 'Ethereum',
+//       nativeCurrency: {
+//         decimals: 18,
+//         name: 'Ether',
+//         symbol: 'ETH',
+//         iconUrl: 'https://app.dynamic.xyz/assets/networks/eth.svg',
+//       },
+//       networkId: 5,
+//       rpcUrls: ['https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'],
   
-      vanityName: 'Goerli',
-    },
-    {
-      blockExplorerUrls: ['https://polygonscan.com/'],
-      chainId: 137,
-      chainName: 'Matic Mainnet',
-      iconUrls: ["https://app.dynamic.xyz/assets/networks/polygon.svg"],
-      name: 'Polygon',
-      nativeCurrency: {
-        decimals: 18,
-        name: 'MATIC',
-        symbol: 'MATIC',
-        iconUrl: 'https://app.dynamic.xyz/assets/networks/polygon.svg',
-      },
-      networkId: 137,
-      rpcUrls: ['https://polygon-rpc.com'],
-      vanityName: 'Polygon',
-    },
+//       vanityName: 'Goerli',
+//     },
+//     {
+//       blockExplorerUrls: ['https://polygonscan.com/'],
+//       chainId: 137,
+//       chainName: 'Matic Mainnet',
+//       iconUrls: ["https://app.dynamic.xyz/assets/networks/polygon.svg"],
+//       name: 'Polygon',
+//       nativeCurrency: {
+//         decimals: 18,
+//         name: 'MATIC',
+//         symbol: 'MATIC',
+//         iconUrl: 'https://app.dynamic.xyz/assets/networks/polygon.svg',
+//       },
+//       networkId: 137,
+//       rpcUrls: ['https://polygon-rpc.com'],
+//       vanityName: 'Polygon',
+//     },
     {
         blockExplorerUrls: ['https://testnet.storyscan.xyz/'],
         chainId: 1513,
@@ -82,7 +86,14 @@ const evmNetworks = [
 
 const DynamicProvider: React.FC<AppProps> = ({ children }) => {
     const { logOut, fetchUser, setUserLogging } = useUser()
-
+    const config = createConfig({
+        chains: [iliad],
+        multiInjectedProviderDiscovery: false,
+        transports: {
+            [iliad.id]: http()
+        }
+    })
+    const queryClient = new QueryClient()
     const fetchUserWithRetry = async (maxAttempts = 5): Promise<void> => {
         let attempts = 0
 
@@ -118,8 +129,9 @@ const DynamicProvider: React.FC<AppProps> = ({ children }) => {
     return (
         <DynamicContextProvider
             settings={{
+                appName: "Test",
                 environmentId: process.env.NEXT_PUBLIC_DYNAMIC_ENVIRONMENT_ID!,
-                walletConnectors: [EthereumWalletConnectors, FlowWalletConnectors],
+                walletConnectors: [EthereumWalletConnectors],
                 eventsCallbacks: {
                     onAuthFlowCancel: async () => {
                         setUserLogging(false)
@@ -159,8 +171,15 @@ const DynamicProvider: React.FC<AppProps> = ({ children }) => {
                 },
                 overrides: { evmNetworks },
             }}
-        >
-            {children}
+        ><WagmiProvider config={config}><QueryClientProvider client={queryClient}>
+          <DynamicWagmiConnector>
+          {children}
+            <DynamicWidget />
+            {/* <AccountInfo /> */}
+          </DynamicWagmiConnector>
+        </QueryClientProvider>
+        </WagmiProvider>
+            
         </DynamicContextProvider>
     )
 }
