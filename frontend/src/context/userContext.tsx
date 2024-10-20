@@ -115,7 +115,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
     useEffect(() => {
         if (templateCode) {
-            setCode([templateCode[1]])
+            setCode([templateCode[5]])
         }
     }, [templateCode])
 

@@ -2,6 +2,13 @@
 import { useNotification } from "@/context/notificationContext"
 import { useUser } from "@/context/userContext"
 import RegisterIPAComponent from "@/library/story/RegisterIPA"
+<<<<<<< HEAD
+=======
+import DerivativeIPAComponent from "@/library/story/derivativeIPA"
+import WrappedRegisterIPAComponent from "@/library/story/RegisterIPA"
+import CollectRoyaltyIPAComponent from "@/library/story/RecieveRoyaltyToken"
+import AttachLicenseComponent from "@/library/story/AttachLicense"
+>>>>>>> 6b92b46 (More method)
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
 import { useRouter } from "next/navigation"
 import React from "react"

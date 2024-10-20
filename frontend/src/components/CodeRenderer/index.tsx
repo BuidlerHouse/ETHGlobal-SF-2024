@@ -48,7 +48,7 @@ const CodeEditor: React.FC = () => {
                         <LiveProvider code={c} language="typescript" scope={{ useState }} key={i}>
                             <div className="flex gap-0 justify-between mb-4 absolute top-7 w-full px-3">
                                 <button
-                                    className="p-2 btn bg-white text-black rounded cursor-pointer"
+                                    className="p-2 btn bg-white text-black rounded cursor-pointer z-[1000]"
                                     onClick={() => toggleShow("UI")}
                                 >
                                     {show === "UI" ? (
@@ -58,7 +58,7 @@ const CodeEditor: React.FC = () => {
                                     )}
                                 </button>
                                 <button
-                                    className="p-2 btn bg-white text-black rounded cursor-pointer"
+                                    className="p-2 btn bg-white text-black rounded cursor-pointer z-[1000]"
                                     onClick={() => toggleShow("code")}
                                 >
                                     {show === "code" ? (

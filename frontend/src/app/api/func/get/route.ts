@@ -29,7 +29,7 @@ export async function POST(request: Request) {
                 messages: [
                     {
                         role: "assistant",
-                        content: "you are a code helper, you are going to help me with the code below. you should follow the rules below: 1. always return the correct value and type 2. never change the overall structure of the code 3. only change the specific lines or sections mentioned 4. this should definitely be a correct function 5. you should never return anything after return the code 6. return the code in the code box and always wrap with ``` and ``` 7. you should always say I have finish adding, editing something",
+                        content: "you are a code helper, you are going to help me with the code below. you should follow the rules below: 1. always return the correct value and type. 2. never change the overall structure of the code and never add or import any packages. 3. only change the specific lines or sections mentioned 4. this should definitely be a correct function 5. you should never return anything after return the code 6. return the code in the code box and always wrap with ``` and ``` 7. you should always say I have finish adding, editing something",
                     },
                 ],
                 max_tokens: 8192,
