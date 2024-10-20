@@ -2,12 +2,16 @@ from rest_framework import serializers
 from .models import CodeBlock
 
 class CodeBlockSerializer(serializers.ModelSerializer):
+    children = serializers.SerializerMethodField()
+
     class Meta:
         model = CodeBlock
-        fields = ['id', 'name', 'wallet_address', 'parent', 'code', 'token_id', 'created_at', 'updated_at']
-        read_only_fields = ['created_at', 'updated_at']
+        fields = ['id', 'name', 'wallet_address', 'parent', 'code', 'token_id', 'created_at', 'updated_at', 'children']
+        read_only_fields = ['created_at', 'updated_at', 'children']
+
+    def get_children(self, obj):
+        return [{'id': child.id, 'token_id': child.token_id} for child in obj.children.all()]
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['children'] = CodeBlockSerializer(instance.children.all(), many=True).data
         return representation
