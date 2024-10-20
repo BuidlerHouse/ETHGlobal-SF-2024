@@ -1,11 +1,13 @@
 "use client"
 import { useNotification } from "@/context/notificationContext"
 import { useUser } from "@/context/userContext"
-import React from "react"
+import React, { useState } from "react"
+import CodeEditor from "../CodeRenderer"
 
 const Design: React.FC = () => {
     const { authorized, openChat, setOpenChat } = useUser()
     const { addNotification } = useNotification()
+
     return (
         <>
             {!openChat && (
@@ -13,7 +15,7 @@ const Design: React.FC = () => {
                     onClick={() => {
                         setOpenChat(true)
                     }}
-                    className="fixed btn btn-square btn-outline left-5 bottom-5"
+                    className="fixed btn btn-square btn-outline left-5 bottom-5 bg-white"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +33,9 @@ const Design: React.FC = () => {
                     </svg>
                 </button>
             )}
+            <div>
+                <CodeEditor />
+            </div>
         </>
     )
 }

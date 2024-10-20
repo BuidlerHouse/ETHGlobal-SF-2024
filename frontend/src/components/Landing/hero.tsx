@@ -13,8 +13,8 @@ const Hero: React.FC = () => {
             <h1 className="text-3xl font-bold animate-pulse">dAIp</h1>
             <p className="px-[20%]">
                 <strong className="text-[20px]">dAIp</strong> is a website builder for creating
-                composable, IP-protected Dapps, empowering builders&apos; monetization through AI and
-                royalties.
+                composable, IP-protected Dapps, empowering builders&apos; monetization through AI
+                and royalties.
             </p>
             <button
                 className="btn btn-neutral hover:opacity-80 active:opacity-90"
@@ -27,6 +27,19 @@ const Hero: React.FC = () => {
                 }}
             >
                 Start Design
+            </button>
+            <button
+                className="btn btn-neutral hover:opacity-80 active:opacity-90"
+                onClick={() => {
+                    if (authorized) {
+                        // function goes here
+                        
+                    } else {
+                        addNotification("Please sign up or log in to continue", "info")
+                    }
+                }}
+            >
+                Create IPA
             </button>
         </div>
     )
