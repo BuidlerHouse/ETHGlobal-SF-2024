@@ -25,9 +25,6 @@ SECRET_KEY = 'django-insecure-#$p$)!-tcz)5$_h0l)jpxib4dn%%!1d-$p+vmhmqcv9*e28fq#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] # TODO: change this to the domain name
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:9001',
     'http://localhost:3000',
@@ -52,20 +62,12 @@ CSRF_TRUSTED_ORIGINS = [
     'https://daip.xyz',
 ]
 
-CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
 
-MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'dAIp.urls'
+
+CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
