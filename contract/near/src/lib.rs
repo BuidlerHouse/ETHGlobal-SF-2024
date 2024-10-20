@@ -40,6 +40,7 @@ pub enum StorageKey {
 #[near_bindgen]
 impl Contract {
     #[init]
+    // TODO: add [Private]
     pub fn new() -> Self {
         let this = Self {
             request: LookupMap::new(StorageKey::Requests),

@@ -62,17 +62,12 @@ def upload_to_Walrus(tmp):
     #         sui_object_id = json_result_dict["alreadyCertified"]["blobObject"]["id"]
     #     else:
     #         raise ValueError("Unexpected response from Walrus")
-        
     #     return (blob_id, sui_object_id)
-
     # print(
     #     f"Upload Blob ID: {blob_id} Size {len(byte_file)} bytes")
-
     # print(f"Certificate in Object ID: {sui_object_id}")
-
-
-# finally:
-#     os.unlink(tmp.name)
+    # finally:
+    #     os.unlink(tmp.name)
 
 
 if __name__ == "__main__":
