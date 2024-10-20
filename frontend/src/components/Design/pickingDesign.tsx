@@ -3,7 +3,7 @@ import { useUser } from "@/context/userContext"
 import React from "react"
 
 const PickingDesign: React.FC = () => {
-    const { templateCode, setCode, setTokenId } = useUser()
+    const { templateCode, setCode, setTokenId, setName } = useUser()
 
     const info = {
         PokemonDerivative: {
@@ -60,6 +60,9 @@ const PickingDesign: React.FC = () => {
                                 key={index}
                                 className="card bg-base-100 w-96 shadow-xl cursor-pointer hover:animate-pulse"
                                 onClick={() => {
+                                    if (temp.name) {
+                                        setName(temp.name)
+                                    }
                                     if (temp.token_id) {
                                         setTokenId(temp.token_id)
                                     }

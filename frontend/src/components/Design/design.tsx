@@ -4,9 +4,11 @@ import React, { useEffect } from "react"
 import CodeEditor from "../CodeRenderer"
 import ChatMainLayout from "../Chat/chatMainLayout"
 import PickingDesign from "./pickingDesign"
+import DerivativeIPAComponent from "@/library/story/derivativeIPA"
 
 const Design: React.FC = () => {
-    const { code, openChat, setOpenChat, setCode, setTemplateCode } = useUser()
+    const { code, openChat, setOpenChat, setCode, setTemplateCode, tokenId, setTokenId, setName } =
+        useUser()
     const getTemplateCode = async () => {
         try {
             const response = await fetch("https://daip.buidler.house/core/codeblocks/")
@@ -38,6 +40,9 @@ const Design: React.FC = () => {
                         : "Choose an Blockchain widget to start designing your page."}
                 </div>
             }
+            {code && tokenId != "" && (
+                <DerivativeIPAComponent parentID={tokenId as `0x${string}`} />
+            )}
             {!openChat && (
                 <>
                     {code && (
@@ -71,6 +76,8 @@ const Design: React.FC = () => {
                         <button
                             onClick={() => {
                                 setCode(null)
+                                setTokenId("")
+                                setName("")
                             }}
                             className="fixed btn btn-square btn-outline left-5 bottom-5 bg-white z-[1000]"
                         >

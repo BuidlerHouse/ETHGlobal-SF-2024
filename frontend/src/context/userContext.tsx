@@ -25,6 +25,8 @@ const UserContext = createContext<{
     setTemplateCode: React.Dispatch<React.SetStateAction<DataItem[] | null>>
     tokenId: string
     setTokenId: React.Dispatch<React.SetStateAction<string>>
+    name: string
+    setName: React.Dispatch<React.SetStateAction<string>>
 }>({
     user: undefined,
     setUser: () => {},
@@ -41,6 +43,8 @@ const UserContext = createContext<{
     setTemplateCode: () => {},
     tokenId: "",
     setTokenId: () => {},
+    name: "",
+    setName: () => {},
 })
 
 interface UserProviderProps {
@@ -69,6 +73,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [code, setCode] = useState<string[] | null>(null)
     const [templateCode, setTemplateCode] = useState<DataItem[] | null>(null)
     const [tokenId, setTokenId] = useState<string>("")
+    const [name, setName] = useState<string>("")
     console.log("templateCode", templateCode)
     const fetchUser = async () => {
         try {
@@ -95,8 +100,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
             return false
         }
     }
-
-    
 
     const logOut = () => {
         setUser(null)
@@ -125,6 +128,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 setTemplateCode,
                 tokenId,
                 setTokenId,
+                name,
+                setName,
             }}
         >
             {children}
