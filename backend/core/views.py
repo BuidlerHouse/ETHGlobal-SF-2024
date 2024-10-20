@@ -17,9 +17,8 @@ import asyncio
 import os
 class CodeBlockAPIView(APIView):
     permission_classes = [AllowAny]
-
     def get(self, request):
-        code_blocks = CodeBlock.objects.all()
+        code_blocks = CodeBlock.objects.all().order_by('-created_at')
         serializer = CodeBlockSerializer(code_blocks, many=True)
         return Response(serializer.data)
 
