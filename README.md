@@ -97,4 +97,3 @@ In Daip code block cases, we use Unlimit for user onramp with host module in san
 Schema Url: https://onramp-sandbox.gatefi.com/?merchantId={merchantId}&cryptoCurrency=eth&cryptoAmount={NFT_FEE}&cryptoAmountLock=True&cryptoCurrencyLock=True&fiatCurrency=USD&fiatCurrencyLock=True&wallet={AGENT_ADDRESS}
 Unlimit web hook: https://daip.buidler.house/core/webhook/
 We want users to pay with USD to mint NFT, when we receive the onramp.sucess event, we mint NFT to user by the agent wallet after blocks confirmation.
-
