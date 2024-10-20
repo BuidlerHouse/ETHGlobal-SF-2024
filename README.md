@@ -4,11 +4,9 @@
 
 ## Introduction
 
-dAIp is a website builder for creating composable, IP-protected Dapps, empowering builders' monetization through AI and royalties.
-
 **dAIp: AI-enhanced Dapp Creation, Unlocking Web3's Full Potential**
 
-TL;DR: dAIp is a website builder for creating composable, IP-protected Dapps, empowering builders' monetization through AI and royalties.
+dAIp is a website builder for creating composable, IP-protected Dapps, empowering builders' monetization through AI and royalties.
 
 Creating fully functioning Dapps is costly and complex, limiting adoption despite growing blockchain infrastructure. dAIp aims to solve this by leveraging AI to simplify the Dapp creation process, reducing technical barriers and costs. Our platform empowers teams of all sizes to customize Dapp templates effortlessly, fostering more real-world Web3 use cases. dAIp also addresses the IP of AI-generated creations, incorporating royalty systems, group collaboration, and a dispute resolution module, ensuring creators' rights and fair distribution of rewards.
 
@@ -26,7 +24,7 @@ Key Functions of dAIp:
 
 **Grouping of Templates**: Multiple templates can be grouped together to create complex Dapps, enabling seamless collaboration across different functionalities.
 
-## Bountry Writeup
+## Bounty Writeup
 
 ### Phala-Network
 
@@ -57,3 +55,10 @@ https://explorer.testnet.near.org/transactions/2b9KTxb8z5oGrbmbsQgQVrGya7mCY2y87
 https://explorer.testnet.near.org/transactions/B3P4RSF3VPGnE4siNbbf8rhiRmynq1MEiAjGx9R1n32y
 
 Takeaway:Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error
+
+### Walrus
+
+dAIp leverages Walrus to securely upload and store files on its decentralized network, linking them to SUI objects. This empowers users to interact with SUI objects for future transactions, dApps customization, and asset representation in a seamless, verifiable manner, ultimately catalyzing innovative solutions in the community.
+
+Code path: backend/core/walrus_upload.py    
+References: https://github.com/MystenLabs/walrus-docs/tree/main/examples
