@@ -70,7 +70,7 @@ def upload_to_walrus(tmp):
     #     os.unlink(tmp.name)
 
 def test():
-    test_str = "HelloHelloWorldTestTest"
+    test_str = "HelloHelloWorldTestTes1111t"
     test_byte = string_to_bytes(test_str)
     print(upload_to_walrus(test_byte))
 
