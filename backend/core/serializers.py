@@ -15,3 +15,16 @@ class CodeBlockSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         return representation
+
+    def validate(self, data):
+        parent = data.get('parent')
+        if isinstance(parent, str):
+            try:
+                parent_obj = CodeBlock.objects.get(token_id=parent)
+                data['parent'] = parent_obj
+            except CodeBlock.DoesNotExist:
+                raise serializers.ValidationError("Parent with given token_id does not exist.")
+        return data
+
+    def create(self, validated_data):
+        return super().create(validated_data)
