@@ -107,4 +107,12 @@ impl Contract {
         let full_request_id = format!("{}_{}", signer_account_id, request_id);
         full_request_id
     }
+
+    pub fn get_chat_history(&self, full_request_id: String) -> Vec<Conversation> {
+        let conversations = self.request.get(&full_request_id)
+            .unwrap_or_else(|| {
+                Vector::new(StorageKey::RequestsConversation { request_id: full_request_id.clone() })
+            });
+        conversations.to_vec()
+    }
 }
