@@ -26,7 +26,7 @@ Key Functions of dAIp:
 
 **Grouping of Templates**: Multiple templates can be grouped together to create complex Dapps, enabling seamless collaboration across different functionalities.
 
-## Bountry Writeup
+## Bounty Writeup
 
 ### Phala-Network
 
@@ -59,3 +59,10 @@ https://explorer.testnet.near.org/transactions/B3P4RSF3VPGnE4siNbbf8rhiRmynq1MEi
 3. Fetch chat history:
 
 Takeaway:Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error
+
+### Walrus
+
+dAIp leverages Walrus to securely upload and store files on its decentralized network, linking them to SUI objects. This empowers users to interact with SUI objects for future transactions, dApps customization, and asset representation in a seamless, verifiable manner, ultimately catalyzing innovative solutions in the community.
+
+Code path: backend/core/walrus_upload.py
+References: https://github.com/MystenLabs/walrus-docs/tree/main/examples
