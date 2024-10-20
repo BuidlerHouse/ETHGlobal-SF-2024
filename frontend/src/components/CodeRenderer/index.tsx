@@ -13,9 +13,9 @@ const CollapsIcon = ({ reverse }: { reverse: boolean }) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
         >
             <path d="M3 19V5" />
             <path d="m13 6-6 6 6 6" />
@@ -30,7 +30,7 @@ const CodeEditor: React.FC = () => {
 
     const handleCodeChange = (newCode: string, index: number) => {
         setCode((prev) => {
-            const newCodeArr = [...prev]
+            const newCodeArr = prev ? [...prev] : []
             newCodeArr[index] = newCode
             return newCodeArr
         })
@@ -41,53 +41,57 @@ const CodeEditor: React.FC = () => {
     }
 
     return (
-        <div className="w-screen h-full">
-            {code.map((c, i) => (
-                <LiveProvider code={c} language="typescript" scope={{ useState }} key={i}>
-                    <div className="flex gap-0 justify-between mb-4 absolute top-7 w-full px-3">
-                        <button
-                            className="p-2 btn bg-white text-black rounded cursor-pointer"
-                            onClick={() => toggleShow("UI")}
-                        >
-                            {show === "UI" ? (
-                                <CollapsIcon reverse={true} />
-                            ) : (
-                                <CollapsIcon reverse={false} />
-                            )}
-                        </button>
-                        <button
-                            className="p-2 btn bg-white text-black rounded cursor-pointer"
-                            onClick={() => toggleShow("code")}
-                        >
-                            {show === "code" ? (
-                                <CollapsIcon reverse={false} />
-                            ) : (
-                                <CollapsIcon reverse={true} />
-                            )}
-                        </button>
-                    </div>
-                    <div className="flex gap-0 justify-between">
-                        {show !== "UI" && (
-                            <div className="w-full max-h-screen overflow-scroll">
-                                <LivePreview />
+        <>
+            {code && (
+                <div className="w-screen h-full">
+                    {code.map((c, i) => (
+                        <LiveProvider code={c} language="typescript" scope={{ useState }} key={i}>
+                            <div className="flex gap-0 justify-between mb-4 absolute top-7 w-full px-3">
+                                <button
+                                    className="p-2 btn bg-white text-black rounded cursor-pointer"
+                                    onClick={() => toggleShow("UI")}
+                                >
+                                    {show === "UI" ? (
+                                        <CollapsIcon reverse={true} />
+                                    ) : (
+                                        <CollapsIcon reverse={false} />
+                                    )}
+                                </button>
+                                <button
+                                    className="p-2 btn bg-white text-black rounded cursor-pointer"
+                                    onClick={() => toggleShow("code")}
+                                >
+                                    {show === "code" ? (
+                                        <CollapsIcon reverse={false} />
+                                    ) : (
+                                        <CollapsIcon reverse={true} />
+                                    )}
+                                </button>
                             </div>
-                        )}
-                        {show !== "code" && (
-                            <div className="w-full max-h-screen overflow-scroll">
-                                <LiveEditor
-                                    onChange={(newCode) => {
-                                        handleCodeChange(newCode, i)
-                                    }}
-                                    theme={themes.oceanicNext}
-                                    style={{ fontSize: "12px" }}
-                                />
+                            <div className="flex gap-0 justify-between">
+                                {show !== "UI" && (
+                                    <div className="w-full max-h-screen overflow-scroll">
+                                        <LivePreview />
+                                    </div>
+                                )}
+                                {show !== "code" && (
+                                    <div className="w-full max-h-screen overflow-scroll">
+                                        <LiveEditor
+                                            onChange={(newCode) => {
+                                                handleCodeChange(newCode, i)
+                                            }}
+                                            theme={themes.oceanicNext}
+                                            style={{ fontSize: "12px" }}
+                                        />
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                    <LiveError />
-                </LiveProvider>
-            ))}
-        </div>
+                            <LiveError />
+                        </LiveProvider>
+                    ))}
+                </div>
+            )}
+        </>
     )
 }
 

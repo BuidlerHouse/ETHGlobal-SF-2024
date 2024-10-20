@@ -15,7 +15,8 @@ const ChatMainLayout: React.FC = () => {
 
     function extractCodeAndText(response: string): { code: string; text: string } {
         // Define the regular expression to find the code block
-        const codeRegex = /```([^`]*)```/g
+        const codeRegex = /```[\s\S]*?```/g
+        console.log("response", response)
 
         // Initialize variables to store the extracted code and text
         let code = ""
@@ -24,6 +25,8 @@ const ChatMainLayout: React.FC = () => {
             return "" // Replace the code block with an empty string
         })
 
+        console.log("code", code)
+        console.log("text", text)
         // Clean up the text by trimming extra whitespace
         text = text.trim()
         text = text.replace("Here's the modified code:", "")
@@ -44,11 +47,14 @@ const ChatMainLayout: React.FC = () => {
         code = code.replace("typescript", "")
         code = code.replace("html", "")
         code = code.replace("css", "")
+        console.log("code", code)
+        console.log("text", text)
         // Return an object containing both the code and the remaining text
         return { code, text }
     }
 
     const handleSend = () => {
+        if (!code) return
         if (input.trim()) {
             setMessages((prev) => {
                 return [...prev, { content: input, role: "user", status: "sent" }]
@@ -62,6 +68,7 @@ const ChatMainLayout: React.FC = () => {
         setMessages((prev) => {
             return [...prev, { content: "", role: "assistant", status: "pending" }]
         })
+
         fetch("/api/func/get/", {
             method: "POST",
             headers: {
@@ -97,10 +104,10 @@ const ChatMainLayout: React.FC = () => {
         <>
             {openChat && (
                 <div
-                    className="fixed z-100 gap-2 left-5 bottom-5 w-[200px] h-[500px] flex flex-col justify-end bg-white"
+                    className="fixed z-100 gap-2 right-5 bottom-5 w-[200px] h-[500px] flex flex-col justify-end bg-black"
                     style={{
                         padding: "6px",
-                        border: "5px solid #000",
+                        border: "5px solid #fff",
                         width: "300px",
                     }}
                 >
@@ -108,21 +115,28 @@ const ChatMainLayout: React.FC = () => {
                         style={{
                             height: "100%",
                             overflowY: "scroll",
-                            border: "1px solid #000",
+                            border: "1px solid #fff",
                             padding: "10px",
+                            background: "white",
                         }}
                     >
                         {messages.map((msg, index) => {
                             if (msg.role === "assistant") {
                                 return (
-                                    <div key={index} style={{ marginBottom: "5px" }}>
+                                    <div
+                                        key={index}
+                                        style={{ marginBottom: "5px", color: "black" }}
+                                    >
                                         <strong>dAIp:</strong>{" "}
                                         {msg.status === "pending" ? "thinking..." : msg.content}
                                     </div>
                                 )
                             } else {
                                 return (
-                                    <div key={index} style={{ marginBottom: "5px" }}>
+                                    <div
+                                        key={index}
+                                        style={{ marginBottom: "5px", color: "black" }}
+                                    >
                                         <strong>You:</strong> {msg.content}
                                     </div>
                                 )
@@ -136,13 +150,18 @@ const ChatMainLayout: React.FC = () => {
                             onChange={(e) => setInput(e.target.value)}
                             style={{
                                 width: "100%",
-                                border: "1px solid #000",
+                                border: "1px solid #fff",
                                 padding: "5px",
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    handleSend()
+                                }
                             }}
                         />
                         <button
                             onClick={handleSend}
-                            className="border-[1px] border-black p-[5px] hover:bg-slate-100 w-[50px]"
+                            className="border-[1px] bg-white border-white p-[5px] hover:bg-slate-100 w-[50px]"
                         >
                             Send
                         </button>
@@ -151,7 +170,7 @@ const ChatMainLayout: React.FC = () => {
                         onClick={() => {
                             setOpenChat(false)
                         }}
-                        className="btn btn-square btn-outline absolute -right-[60px] bg-white -bottom-[5px]"
+                        className="btn btn-square btn-outline absolute -left-[60px] bg-white -bottom-[5px]"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

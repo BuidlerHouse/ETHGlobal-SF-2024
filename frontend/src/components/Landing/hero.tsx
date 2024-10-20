@@ -4,7 +4,7 @@ import { useUser } from "@/context/userContext"
 import RegisterIPAComponent from "@/library/story/RegisterIPA"
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
 import { useRouter } from "next/navigation"
-import React, { useEffect } from "react"
+import React from "react"
 const Hero: React.FC = () => {
     const { authorized } = useUser()
     const { addNotification } = useNotification()

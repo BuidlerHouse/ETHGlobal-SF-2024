@@ -14,7 +14,6 @@ export default async function Home() {
                 You are seeing this because you’re currently designing your page.
             </div>
             <Design />
-            <ChatMainLayout />
             <Footer />
         </div>
     )
