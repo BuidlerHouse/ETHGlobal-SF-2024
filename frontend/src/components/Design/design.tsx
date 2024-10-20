@@ -1,16 +1,43 @@
 "use client"
-import { useNotification } from "@/context/notificationContext"
 import { useUser } from "@/context/userContext"
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import CodeEditor from "../CodeRenderer"
 import ChatMainLayout from "../Chat/chatMainLayout"
+import PickingDesign from "./pickingDesign"
 
 const Design: React.FC = () => {
-    const { authorized, code, openChat, setOpenChat } = useUser()
-    const { addNotification } = useNotification()
+    const { code, openChat, setOpenChat, setCode, setTemplateCode } = useUser()
+    const getTemplateCode = async () => {
+        try {
+            const response = await fetch("https://daip.buidler.house/core/codeblocks/")
+            const data = await response.json()
+            if (data) {
+                setTemplateCode(data)
+                return true
+            } else {
+                setTemplateCode(null)
+                return false
+            }
+        } catch (error) {
+            console.error("Authentication failed:", error)
+            setTemplateCode(null)
+            return false
+        }
+    }
+
+    useEffect(() => {
+        getTemplateCode()
+    }, [])
 
     return (
         <>
+            {
+                <div className="w-full h-auto bg-black text-white text-[12px] text-center fixed z-[10000]">
+                    {code
+                        ? "You are seeing this because you’re currently designing your page."
+                        : "Choose an Blockchain widget to start designing your page."}
+                </div>
+            }
             {!openChat && (
                 <>
                     {code && (
@@ -38,12 +65,35 @@ const Design: React.FC = () => {
                     )}
                 </>
             )}
+            {
+                <>
+                    {code && (
+                        <button
+                            onClick={() => {
+                                setCode(null)
+                            }}
+                            className="fixed btn btn-square btn-outline left-5 bottom-5 bg-white z-[1000]"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M18 15h-6v4l-7-7 7-7v4h6v6z" />
+                            </svg>
+                        </button>
+                    )}
+                </>
+            }
             {code && <ChatMainLayout />}
-            {code && (
-                <div>
-                    <CodeEditor />
-                </div>
-            )}
+            {code && <CodeEditor />}
+            {!code && <PickingDesign />}
         </>
     )
 }

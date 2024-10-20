@@ -21,6 +21,10 @@ const UserContext = createContext<{
     setOpenChat: React.Dispatch<React.SetStateAction<boolean>>
     code: string[] | null
     setCode: React.Dispatch<React.SetStateAction<string[] | null>>
+    templateCode: DataItem[] | null
+    setTemplateCode: React.Dispatch<React.SetStateAction<DataItem[] | null>>
+    tokenId: string
+    setTokenId: React.Dispatch<React.SetStateAction<string>>
 }>({
     user: undefined,
     setUser: () => {},
@@ -33,10 +37,26 @@ const UserContext = createContext<{
     setOpenChat: () => {},
     code: [],
     setCode: () => {},
+    templateCode: [],
+    setTemplateCode: () => {},
+    tokenId: "",
+    setTokenId: () => {},
 })
 
 interface UserProviderProps {
     children: React.ReactNode
+}
+
+export interface DataItem {
+    id: number
+    wallet_address: string
+    parent: string | null
+    code: string
+    name: string
+    token_id: string
+    created_at: string
+    updated_at: string
+    children: any[]
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
@@ -47,7 +67,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [userLogging, setUserLogging] = useState<boolean>(false)
     const [openChat, setOpenChat] = useState<boolean>(false)
     const [code, setCode] = useState<string[] | null>(null)
-    const [templateCode, setTemplateCode] = useState<string[] | null>(null)
+    const [templateCode, setTemplateCode] = useState<DataItem[] | null>(null)
+    const [tokenId, setTokenId] = useState<string>("")
     console.log("templateCode", templateCode)
     const fetchUser = async () => {
         try {
@@ -74,34 +95,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
             return false
         }
     }
-    interface DataItem {
-        id: number
-        wallet_address: string
-        parent: string | null
-        code: string
-        token_id: string
-        created_at: string
-        updated_at: string
-        children: any[]
-    }
 
-    const getTemplateCode = async () => {
-        try {
-            const response = await fetch("https://daip.buidler.house/core/codeblocks/")
-            const data = await response.json()
-            if (data) {
-                setTemplateCode(data.map((item: DataItem) => item.code))
-                return true
-            } else {
-                setTemplateCode(null)
-                return false
-            }
-        } catch (error) {
-            console.error("Authentication failed:", error)
-            setTemplateCode(null)
-            return false
-        }
-    }
+    
 
     const logOut = () => {
         setUser(null)
@@ -110,14 +105,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
     useEffect(() => {
         fetchUser()
-        getTemplateCode()
     }, [])
-
-    useEffect(() => {
-        if (templateCode) {
-            setCode([templateCode[5]])
-        }
-    }, [templateCode])
 
     return (
         <UserContext.Provider
@@ -133,6 +121,10 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 setOpenChat,
                 code,
                 setCode,
+                templateCode,
+                setTemplateCode,
+                tokenId,
+                setTokenId,
             }}
         >
             {children}
