@@ -41,7 +41,7 @@ def upload_to_walrus(tmp):
 
     # Display key information of the response
     json_result_dict = json.loads(result.stdout.strip())
-
+    print(json_result_dict)
     if "newlyCreated" in json_result_dict:
         blob_id = json_result_dict["newlyCreated"]["blobObject"]["blobId"]
         sui_object_id = json_result_dict["newlyCreated"]["blobObject"]["id"]
