@@ -14,7 +14,7 @@ mod util;
 pub const VERSION_CODE: &str  = "v1.0.0";
 pub const GAS_FOR_CALL: Gas = Gas(parse_gas!("20 Tgas") as u64);
 
-#[derive(BorshDeserialize, BorshSerialize)]
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize)]
 pub struct Conversation {
     pub messages: String,
     pub role: String,
