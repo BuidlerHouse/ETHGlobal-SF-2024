@@ -56,6 +56,4 @@ https://explorer.testnet.near.org/transactions/2b9KTxb8z5oGrbmbsQgQVrGya7mCY2y87
 2. Reply by anonymous service provider:
 https://explorer.testnet.near.org/transactions/B3P4RSF3VPGnE4siNbbf8rhiRmynq1MEiAjGx9R1n32y
 
-3. Fetch chat history:
-
 Takeaway:Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error
