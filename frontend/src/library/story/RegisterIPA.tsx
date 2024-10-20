@@ -1,11 +1,11 @@
-'use client'
-import { Address, custom, http, Transport } from "viem"
+"use client"
+import { Address, http } from "viem"
 import { uploadJSONToIPFS } from "./utils/uploadToIpfs"
 import { createHash } from "crypto"
 import { CurrencyAddress } from "./utils/utils"
 import { useState } from "react"
-import { useAccount, useWalletClient } from "wagmi"
-import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
+import { useWalletClient } from "wagmi"
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
 import { PIL_TYPE, StoryClient, StoryConfig } from "@story-protocol/core-sdk"
 import { isEthereumWallet } from "@dynamic-labs/ethereum"
 
@@ -16,14 +16,13 @@ const RegisterIPAComponent = () => {
     const [loading, setLoading] = useState(false)
     const result = useWalletClient()
 
- 
     const handleRegisterIPA = async () => {
         setLoading(true)
 
         try {
-            if(primaryWallet && isEthereumWallet(primaryWallet)) {
-                const walletClient = await primaryWallet.getWalletClient();
-            
+            if (primaryWallet && isEthereumWallet(primaryWallet)) {
+                const walletClient = await primaryWallet.getWalletClient()
+
                 console.log("wallet", result)
                 const config: StoryConfig = {
                     wallet: walletClient,
@@ -99,6 +98,5 @@ const RegisterIPAComponent = () => {
         </div>
     )
 }
-
 
 export default RegisterIPAComponent

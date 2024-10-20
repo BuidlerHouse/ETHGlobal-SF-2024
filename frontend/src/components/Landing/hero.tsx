@@ -2,25 +2,15 @@
 import { useNotification } from "@/context/notificationContext"
 import { useUser } from "@/context/userContext"
 import RegisterIPAComponent from "@/library/story/RegisterIPA"
-import WrappedRegisterIPAComponent from "@/library/story/RegisterIPA"
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
-import { iliad } from "@story-protocol/core-sdk"
-import { QueryClient } from "@tanstack/query-core"
-import { QueryClientProvider } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import React, { useEffect } from "react"
-import { createConfig, http, useAccount, WagmiProvider } from "wagmi"
 const Hero: React.FC = () => {
     const { authorized } = useUser()
     const { addNotification } = useNotification()
     const { primaryWallet } = useDynamicContext()
     const router = useRouter()
-    const { address, isConnected } = useAccount();
-    useEffect(() => {
-        console.log("primaryWallet", primaryWallet?.address)
-    console.log("address", address)
-    console.log("isConnected", isConnected)
-    } , [primaryWallet])
+
     return (
         <div className="flex flex-col justify-center items-center gap-6 w-full">
             <h1 className="text-3xl font-bold animate-pulse">dAIp</h1>
@@ -31,8 +21,8 @@ const Hero: React.FC = () => {
                     composable
                     <span aria-hidden="true">composable</span>
                 </span>
-                , IP-protected Dapps, empowering builders&apos; monetization through AI
-                and royalties.
+                , IP-protected Dapps, empowering builders&apos; monetization through AI and
+                royalties.
             </p>
             <button
                 className="btn btn-neutral hover:opacity-80 active:opacity-90"
@@ -46,8 +36,7 @@ const Hero: React.FC = () => {
             >
                 Start Design
             </button>
-            <div>{address}</div>
-            {primaryWallet?.address && (  <RegisterIPAComponent  /> )}
+            {primaryWallet?.address && <RegisterIPAComponent />}
         </div>
     )
 }
