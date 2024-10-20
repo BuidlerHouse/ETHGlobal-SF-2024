@@ -14,41 +14,49 @@ const ChatMainLayout: React.FC = () => {
     const [input, setInput] = useState<string>("")
 
     function extractCodeAndText(response: string): { code: string; text: string } {
-        // Define the regular expression to find the code block
+        // Define the regular expression to find the code block (multiline supported)
         const codeRegex = /```[\s\S]*?```/g
         console.log("response", response)
 
         // Initialize variables to store the extracted code and text
         let code = ""
-        let text = response.replace(codeRegex, (match, capturedCode) => {
-            code = capturedCode.trim() // Save the code and trim any extra spaces or newlines
-            return "" // Replace the code block with an empty string
-        })
+        let text = response
+
+        // Find and process all code blocks
+        const codes = response.match(codeRegex)
+        if (codes) {
+            code = codes
+                .map((c) => {
+                    // Ensure c is a string before applying .trim()
+                    const cleanCode = c
+                        .replace(/```(typescript|javascript|jsx|html|css)?/g, "")
+                        .replace(/```/g, "")
+                    return typeof cleanCode === "string" ? cleanCode.trim() : ""
+                })
+                .join("\n\n")
+            text = response.replace(codeRegex, "").trim() // Replace all code blocks with empty strings
+        }
+
+        // Clean up the text by trimming extra whitespace and common code intro text
+        text = text
+            .replace("Here's the modified code:", "")
+            .replace("Here's the updated code:", "")
+            .replace("Here's the corrected code:", "")
+            .replace("Here's the fixed code:", "")
+            .replace("Here's the code with the changes:", "")
+            .replace("Here's the code with the corrections:", "")
+            .replace("Here's the code with the modifications:", "")
+            .replace("Here's the code with the edits:", "")
+            .replace("Here's the code with the updates:", "")
+            .replace("Here's the code with the amendments:", "")
+            .replace("Here's the code with the revisions:", "")
+            .replace("Here's the code with the alterations:", "")
+            .replace("Here's the code with the modifications:", "")
+            .trim()
 
         console.log("code", code)
         console.log("text", text)
-        // Clean up the text by trimming extra whitespace
-        text = text.trim()
-        text = text.replace("Here's the modified code:", "")
-        text = text.replace("Here's the updated code:", "")
-        text = text.replace("Here's the corrected code:", "")
-        text = text.replace("Here's the fixed code:", "")
-        text = text.replace("Here's the code with the changes:", "")
-        text = text.replace("Here's the code with the corrections:", "")
-        text = text.replace("Here's the code with the modifications:", "")
-        text = text.replace("Here's the code with the edits:", "")
-        text = text.replace("Here's the code with the updates:", "")
-        text = text.replace("Here's the code with the amendments:", "")
-        text = text.replace("Here's the code with the revisions:", "")
-        text = text.replace("Here's the code with the alterations:", "")
-        text = text.replace("Here's the code with the modifications:", "")
-        code = code.replace("jsx", "")
-        code = code.replace("javascript", "")
-        code = code.replace("typescript", "")
-        code = code.replace("html", "")
-        code = code.replace("css", "")
-        console.log("code", code)
-        console.log("text", text)
+
         // Return an object containing both the code and the remaining text
         return { code, text }
     }
