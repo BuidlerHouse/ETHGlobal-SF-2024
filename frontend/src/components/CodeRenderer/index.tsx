@@ -2,6 +2,7 @@ import { useUser } from "@/context/userContext"
 import React, { useState } from "react"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import { themes } from "prism-react-renderer" // Import themes
+import RegisterIPAComponent from "@/library/story/RegisterIPA"
 
 const CollapsIcon = ({ reverse }: { reverse: boolean }) => {
     return (
@@ -45,7 +46,12 @@ const CodeEditor: React.FC = () => {
             {code && (
                 <div className="w-screen h-full">
                     {code.map((c, i) => (
-                        <LiveProvider code={c} language="typescript" scope={{ useState }} key={i}>
+                        <LiveProvider
+                            code={c}
+                            language="typescript"
+                            scope={{ useState, RegisterIPAComponent }}
+                            key={i}
+                        >
                             <div className="flex gap-0 justify-between mb-4 absolute top-7 w-full px-3">
                                 <button
                                     className="p-2 btn bg-white text-black cursor-pointer z-[1000]"

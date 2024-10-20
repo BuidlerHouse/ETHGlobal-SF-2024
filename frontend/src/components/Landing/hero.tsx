@@ -36,9 +36,6 @@ const Hero: React.FC = () => {
             >
                 Start Design
             </button>
-            {primaryWallet?.address && (
-                <RevenueClaimComponent childID="0x22Ed469e99aB79bd65f541556EDFFAa84a1C8E04" />
-            )}
         </div>
     )
 }

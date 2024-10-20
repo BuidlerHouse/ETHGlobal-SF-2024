@@ -6,7 +6,7 @@ interface NotificationListProps {
 
 export const NotificationList: React.FC<NotificationListProps> = ({ notifications }) => {
     return (
-        <div className="fixed bottom-5 right-5 space-y-4 z-[10000] bg-black">
+        <div className="fixed bottom-5 right-1/2 -translate-y-1/2 z-[10000] bg-black">
             {notifications.map(({ id, text, type }) => (
                 <NotificationItem key={id} text={text} type={type} />
             ))}
@@ -87,7 +87,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ text, type }) => {
     }
 
     return (
-        <div role="alert" className={getAlertClass()}>
+        <div role="alert" className=" bg-black ">
             {getIcon()}
             <span className="text-white">{text}</span>
         </div>

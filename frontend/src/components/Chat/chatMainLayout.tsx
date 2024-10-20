@@ -79,7 +79,8 @@ const ChatMainLayout: React.FC = () => {
 
         if (input.includes("onramp")) {
             setTimeout(() => {
-                setCode([`function PokemonNFTBattle() {
+                setCode([
+                    `function PokemonNFTBattle() {
   const [hasMinted, setHasMinted] = useState(false);
 
   const opponentNFT = {
@@ -95,8 +96,10 @@ const ChatMainLayout: React.FC = () => {
   };
 
   const handleMint = () => {
+    // Mint
+    setTimeout(() => {
     setHasMinted(true);
-    alert('Your NFT has been minted! Get ready to battle!');
+    }, 8000);
   };
 
   return (
@@ -201,25 +204,8 @@ const ChatMainLayout: React.FC = () => {
             <p style={{ fontSize: '1.25rem', color: '#aaa', marginTop: '50%' }}>
               Mint your NFT to start battling!
             </p> {/* Mint Button */}
-        {!hasMinted && (
-          <a
-            href="https://onramp-sandbox.gatefi.com/?merchantId=3f68e9a6-5886-4d24-bb3b-b075033d51c1&cryptoCurrency=eth&cryptoAmount=0.1&cryptoAmountLock=True&cryptoCurrencyLock=True&fiatCurrency=USD&fiatCurrencyLock=True&wallet=0xe5107dee9CcC8054210FF6129cE15Eaa5bbcB1c0"
-            style={{
-              backgroundColor: '#ffcc00',
-              color: '#000',
-              padding: '0.75rem 1.5rem',
-              fontSize: '1.25rem',
-              borderRadius: '0.5rem',
-              border: 'none',
-              marginTop: '2rem',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              textDecoration: 'none',
-              display: 'inline-block',
-            }}
-          >
-            Mint Your Pokémon NFT
-          </a>
+        {!hasMinted && (<button onClick={handleMint}>
+          <RegisterIPAComponent /></button>
         )}
             </>
           )}
@@ -229,17 +215,18 @@ const ChatMainLayout: React.FC = () => {
       </div>
     </div>
   );
-}`])
-setMessages((prev) => {
-    return [
-        ...prev.slice(0, -1),
-        {
-            content: "You are onramp now.",
-            role: "assistant",
-            status: "delivered",
-        },
-    ]
-})
+}`,
+                ])
+                setMessages((prev) => {
+                    return [
+                        ...prev.slice(0, -1),
+                        {
+                            content: "You are onramp now.",
+                            role: "assistant",
+                            status: "delivered",
+                        },
+                    ]
+                })
             }, 1000)
         }
 

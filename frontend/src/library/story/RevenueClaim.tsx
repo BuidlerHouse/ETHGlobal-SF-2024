@@ -16,11 +16,12 @@ import {
 } from "@story-protocol/core-sdk"
 import { isEthereumWallet } from "@dynamic-labs/ethereum"
 import { useUser } from "@/context/userContext"
+import { useNotification } from "@/context/notificationContext"
 
 // A React functional component that handles the registration logic
 const RevenueClaimComponent = ({ childID }: { childID: `0x${string}` }) => {
     const { primaryWallet } = useDynamicContext()
-    const { openChat } = useUser()
+    const { addNotification } = useNotification()
     const [loading, setLoading] = useState(false)
     const result = useWalletClient()
 
@@ -44,8 +45,9 @@ const RevenueClaimComponent = ({ childID }: { childID: `0x${string}` }) => {
                     txOptions: { waitForTransaction: true },
                 })
 
-                console.log(
-                    `Took a snapshot with ID ${snapshotResponse.snapshotId} at transaction hash ${snapshotResponse.txHash}`
+                addNotification(
+                    `Took a snapshot with ID ${snapshotResponse.snapshotId} at transaction hash ${snapshotResponse.txHash}`,
+                    "success"
                 )
                 const claimRevenueResponse: ClaimRevenueResponse =
                     await client.royalty.claimRevenue({
@@ -54,8 +56,9 @@ const RevenueClaimComponent = ({ childID }: { childID: `0x${string}` }) => {
                         token: "0x91f6F05B08c16769d3c85867548615d270C42fC7",
                         txOptions: { waitForTransaction: true },
                     })
-                console.log(
-                    `Claimed revenue ${claimRevenueResponse.claimableToken} at transaction hash ${claimRevenueResponse.txHash}`
+                addNotification(
+                    `Claimed revenue ${claimRevenueResponse.claimableToken} at transaction hash ${claimRevenueResponse.txHash}`,
+                    "success"
                 )
             }
         } catch (error) {
@@ -70,8 +73,8 @@ const RevenueClaimComponent = ({ childID }: { childID: `0x${string}` }) => {
             <button
                 onClick={handleRegisterIPA}
                 disabled={loading}
-                style={{ position: "fixed", right: openChat ? "435px" : "140px" }}
-                className="btn btn-outline bottom-25 bg-white"
+                style={{ position: "fixed", left: "90px" }}
+                className="btn btn-outline bottom-5 bg-white"
             >
                 {loading ? "Registering..." : "Claim Revenue"}
             </button>

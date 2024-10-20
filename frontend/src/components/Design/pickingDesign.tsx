@@ -60,8 +60,8 @@ const PickingDesign: React.FC = () => {
                                 key={index}
                                 className="card bg-base-100 w-96 shadow-xl cursor-pointer hover:animate-pulse"
                                 onClick={() => {
-                                    if (temp.parent) {
-                                        setParentId(temp.parent)
+                                    if (temp.parent_token_id) {
+                                        setParentId(temp.parent_token_id)
                                     }
                                     if (temp.name) {
                                         setName(temp.name)

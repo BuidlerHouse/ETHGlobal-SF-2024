@@ -64,6 +64,7 @@ export interface DataItem {
     token_id: string
     created_at: string
     updated_at: string
+    parent_token_id: string
     children: any[]
 }
 

@@ -5,14 +5,15 @@ import { createHash } from "crypto"
 import { CurrencyAddress } from "./utils/utils"
 import { useState } from "react"
 import { useWalletClient } from "wagmi"
-import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
 import { PIL_TYPE, StoryClient, StoryConfig } from "@story-protocol/core-sdk"
 import { isEthereumWallet } from "@dynamic-labs/ethereum"
+import { useNotification } from "@/context/notificationContext"
 
 // A React functional component that handles the registration logic
 const RegisterIPAComponent = () => {
     const { primaryWallet } = useDynamicContext()
-
+    const { addNotification } = useNotification()
     const [loading, setLoading] = useState(false)
     const result = useWalletClient()
 
@@ -46,7 +47,8 @@ const RegisterIPAComponent = () => {
                 console.log("done")
                 const nftMetadata = {
                     name: "PokemonNFTBattle Code Block",
-                    description: "This NFT represents ownership of this Code Block as an PokemonNFTBattle IP",
+                    description:
+                        "This NFT represents ownership of this Code Block as an PokemonNFTBattle IP",
                     image: "https://raw.githubusercontent.com/BuidlerHouse/dAIp/refs/heads/main/docs/logo.png",
                 }
                 console.log("done")
@@ -59,8 +61,8 @@ const RegisterIPAComponent = () => {
                 console.log(`Generating Parent IP`)
                 console.log(process.env.SPG_NFT_CONTRACT_ADDRESS as Address)
                 console.log(CurrencyAddress)
-                console.log(`IP Hash:`,ipHash)
-                console.log(`NFT Hash:`,nftHash)
+                console.log(`IP Hash:`, ipHash)
+                console.log(`NFT Hash:`, nftHash)
                 const RootIPA = await client.ipAsset.mintAndRegisterIpAssetWithPilTerms({
                     nftContract: "0x57b8e223Cd397B8334ff37a2FA0F513DdB57E498" as Address,
                     pilType: PIL_TYPE.COMMERCIAL_REMIX,
@@ -76,13 +78,14 @@ const RegisterIPAComponent = () => {
                     txOptions: { waitForTransaction: true },
                 })
 
-                console.log(
-                    `Root IPA created at transaction hash ${RootIPA.txHash}, IPA ID: ${RootIPA.ipId}, License Terms ID: ${RootIPA.licenseTermsId}`
+                addNotification(
+                    `Root IPA created at transaction hash ${RootIPA.txHash}, IPA ID: ${RootIPA.ipId}, License Terms ID: ${RootIPA.licenseTermsId}`,
+                    "success"
                 )
-                console.log(
-                    `View on the explorer: https://explorer.story.foundation/ipa/${RootIPA.ipId}`
+                addNotification(
+                    `View on the explorer: https://explorer.story.foundation/ipa/${RootIPA.ipId}`,
+                    "success"
                 )
-
             }
         } catch (error) {
             console.error("Error registering IPA:", error)
@@ -93,12 +96,25 @@ const RegisterIPAComponent = () => {
 
     return (
         <div>
-            <button onClick={handleRegisterIPA} disabled={loading}>
-                {loading ? "Registering..." : "Register IPA"}
+            <button
+                onClick={handleRegisterIPA}
+                disabled={loading}
+                style={{
+                    backgroundColor: "#ffcc00",
+                    color: "#000",
+                    padding: "0.75rem 1.5rem",
+                    fontSize: "1.25rem",
+                    borderRadius: "0.5rem",
+                    border: "none",
+                    marginTop: "2rem",
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                }}
+            >
+                {loading ? "Mint Your Pokémon NFT..." : " Mint Your Pokémon NFT"}
             </button>
         </div>
     )
 }
-
 
 export default RegisterIPAComponent

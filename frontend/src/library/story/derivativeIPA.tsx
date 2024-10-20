@@ -9,13 +9,14 @@ import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
 import { StoryClient, StoryConfig } from "@story-protocol/core-sdk"
 import { isEthereumWallet } from "@dynamic-labs/ethereum"
 import { useUser } from "@/context/userContext"
+import { useNotification } from "@/context/notificationContext"
 
 const DerivativeIPAComponent = ({ parentID }: { parentID: `0x${string}` }) => {
     const { primaryWallet } = useDynamicContext()
     const { openChat, code, tokenId, name } = useUser()
     const [loading, setLoading] = useState(false)
     const result = useWalletClient()
-
+    const { addNotification } = useNotification()
     const handleRegisterIPA = async (code: string) => {
         setLoading(true)
         if (!code) {
@@ -80,11 +81,13 @@ const DerivativeIPAComponent = ({ parentID }: { parentID: `0x${string}` }) => {
                     txOptions: { waitForTransaction: true },
                 })
 
-                console.log(
-                    `Deriv IPA created at transaction hash ${IPAresponse.txHash}, IPA ID: ${IPAresponse.childIpId}`
+                addNotification(
+                    `Deriv IPA created at transaction hash ${IPAresponse.txHash}, IPA ID: ${IPAresponse.childIpId}`,
+                    "success"
                 )
-                console.log(
-                    `View on the explorer: https://explorer.story.foundation/ipa/${IPAresponse.childIpId}`
+                addNotification(
+                    `View on the explorer: https://explorer.story.foundation/ipa/${IPAresponse.childIpId}`,
+                    "success"
                 )
 
                 const AttachResponse = await client.license.attachLicenseTerms({
@@ -109,7 +112,10 @@ const DerivativeIPAComponent = ({ parentID }: { parentID: `0x${string}` }) => {
                 })
                 const data = await response.json()
                 console.log(data)
-                console.log(`License attached at transaction hash ${AttachResponse.txHash}`)
+                addNotification(
+                    `License attached at transaction hash ${AttachResponse.txHash}`,
+                    "success"
+                )
             }
         } catch (error) {
             console.error("Error registering IPA:", error)
