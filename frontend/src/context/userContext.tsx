@@ -27,6 +27,8 @@ const UserContext = createContext<{
     setTokenId: React.Dispatch<React.SetStateAction<string>>
     name: string
     setName: React.Dispatch<React.SetStateAction<string>>
+    parentId: string
+    setParentId: React.Dispatch<React.SetStateAction<string>>
 }>({
     user: undefined,
     setUser: () => {},
@@ -45,6 +47,8 @@ const UserContext = createContext<{
     setTokenId: () => {},
     name: "",
     setName: () => {},
+    parentId: "",
+    setParentId: () => {},
 })
 
 interface UserProviderProps {
@@ -74,7 +78,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [templateCode, setTemplateCode] = useState<DataItem[] | null>(null)
     const [tokenId, setTokenId] = useState<string>("")
     const [name, setName] = useState<string>("")
-    console.log("templateCode", templateCode)
+    const [parentId, setParentId] = useState<string>("")
+
     const fetchUser = async () => {
         try {
             const data = await authUser()
@@ -130,6 +135,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 setTokenId,
                 name,
                 setName,
+                parentId,
+                setParentId,
             }}
         >
             {children}

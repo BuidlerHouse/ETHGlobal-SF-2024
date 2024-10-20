@@ -21,13 +21,8 @@ const Hero: React.FC = () => {
             <h1 className="text-3xl font-bold animate-pulse">dAIp</h1>
             <p className="px-[20%]">
                 <strong className="text-[20px]">dAIp</strong> is a website builder for creating
-                <span className="glitch">
-                    <span aria-hidden="true">composable</span>
-                    composable
-                    <span aria-hidden="true">composable</span>
-                </span>
-                , IP-protected Dapps, empowering builders&apos; monetization through AI and
-                royalties.
+                composable, IP-protected Dapps, empowering builders&apos; monetization through AI
+                and royalties.
             </p>
             <button
                 className="btn btn-neutral hover:opacity-80 active:opacity-90"
@@ -41,7 +36,9 @@ const Hero: React.FC = () => {
             >
                 Start Design
             </button>
-            {primaryWallet?.address && <RevenueClaimComponent childID = "0x22Ed469e99aB79bd65f541556EDFFAa84a1C8E04"/>}
+            {primaryWallet?.address && (
+                <RevenueClaimComponent childID="0x22Ed469e99aB79bd65f541556EDFFAa84a1C8E04" />
+            )}
         </div>
     )
 }

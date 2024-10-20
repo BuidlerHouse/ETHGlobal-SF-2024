@@ -5,10 +5,23 @@ import CodeEditor from "../CodeRenderer"
 import ChatMainLayout from "../Chat/chatMainLayout"
 import PickingDesign from "./pickingDesign"
 import DerivativeIPAComponent from "@/library/story/derivativeIPA"
+import CollectRoyaltyIPAComponent from "@/library/story/RecieveRoyaltyToken"
+import { Address } from "viem"
+import RevenueClaimComponent from "@/library/story/RevenueClaim"
 
 const Design: React.FC = () => {
-    const { code, openChat, setOpenChat, setCode, setTemplateCode, tokenId, setTokenId, setName } =
-        useUser()
+    const {
+        code,
+        openChat,
+        setOpenChat,
+        setCode,
+        setTemplateCode,
+        tokenId,
+        setTokenId,
+        setName,
+        parentId,
+        setParentId,
+    } = useUser()
     const getTemplateCode = async () => {
         try {
             const response = await fetch("https://daip.buidler.house/core/codeblocks/")
@@ -78,6 +91,7 @@ const Design: React.FC = () => {
                                 setCode(null)
                                 setTokenId("")
                                 setName("")
+                                setParentId("")
                             }}
                             className="fixed btn btn-square btn-outline left-5 bottom-5 bg-white z-[1000]"
                         >
@@ -101,6 +115,13 @@ const Design: React.FC = () => {
             {code && <ChatMainLayout />}
             {code && <CodeEditor />}
             {!code && <PickingDesign />}
+            {code && parentId && tokenId && (
+                <CollectRoyaltyIPAComponent
+                    parentID={parentId as Address}
+                    childID={tokenId as Address}
+                />
+            )}
+            {code && tokenId && <RevenueClaimComponent childID={tokenId as Address} />}
         </>
     )
 }

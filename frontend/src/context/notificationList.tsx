@@ -6,7 +6,7 @@ interface NotificationListProps {
 
 export const NotificationList: React.FC<NotificationListProps> = ({ notifications }) => {
     return (
-        <div className="fixed bottom-5 right-5 space-y-4 z-[10000]">
+        <div className="fixed bottom-5 right-5 space-y-4 z-[10000] bg-black">
             {notifications.map(({ id, text, type }) => (
                 <NotificationItem key={id} text={text} type={type} />
             ))}
@@ -26,7 +26,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ text, type }) => {
                 return (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 shrink-0 stroke-current"
+                        className="h-6 w-6 shrink-0 stroke-white"
                         fill="none"
                         viewBox="0 0 24 24"
                     >
@@ -42,7 +42,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ text, type }) => {
                 return (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 shrink-0 stroke-current"
+                        className="h-6 w-6 shrink-0 stroke-white"
                         fill="none"
                         viewBox="0 0 24 24"
                     >
@@ -58,7 +58,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ text, type }) => {
                 return (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 shrink-0 stroke-current"
+                        className="h-6 w-6 shrink-0 stroke-white"
                         fill="none"
                         viewBox="0 0 24 24"
                     >
@@ -76,11 +76,11 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ text, type }) => {
     const getAlertClass = () => {
         switch (type) {
             case "info":
-                return "alert alert-info"
+                return "alert-info"
             case "success":
-                return "alert alert-success"
+                return "alert-success"
             case "error":
-                return "alert alert-error"
+                return "alert-error"
             default:
                 return ""
         }
@@ -89,7 +89,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ text, type }) => {
     return (
         <div role="alert" className={getAlertClass()}>
             {getIcon()}
-            <span>{text}</span>
+            <span className="text-white">{text}</span>
         </div>
     )
 }

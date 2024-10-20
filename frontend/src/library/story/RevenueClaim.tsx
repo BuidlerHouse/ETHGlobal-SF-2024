@@ -1,31 +1,36 @@
-'use client'
+"use client"
 import { Address, custom, http, Transport } from "viem"
 import { uploadJSONToIPFS } from "./utils/uploadToIpfs"
 import { createHash } from "crypto"
 import { CurrencyAddress } from "./utils/utils"
 import { useState } from "react"
 import { useWalletClient } from "wagmi"
-import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
-import { PIL_TYPE, StoryClient, StoryConfig, CollectRoyaltyTokensResponse, SnapshotResponse, ClaimRevenueResponse } from "@story-protocol/core-sdk"
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
+import {
+    PIL_TYPE,
+    StoryClient,
+    StoryConfig,
+    CollectRoyaltyTokensResponse,
+    SnapshotResponse,
+    ClaimRevenueResponse,
+} from "@story-protocol/core-sdk"
 import { isEthereumWallet } from "@dynamic-labs/ethereum"
+import { useUser } from "@/context/userContext"
 
 // A React functional component that handles the registration logic
-const RevenueClaimComponent = ({ childID }:
-     {  childID: `0x${string}` 
-     }) => {
+const RevenueClaimComponent = ({ childID }: { childID: `0x${string}` }) => {
     const { primaryWallet } = useDynamicContext()
-
+    const { openChat } = useUser()
     const [loading, setLoading] = useState(false)
     const result = useWalletClient()
 
- 
     const handleRegisterIPA = async () => {
         setLoading(true)
 
         try {
-            if(primaryWallet && isEthereumWallet(primaryWallet)) {
-                const walletClient = await primaryWallet.getWalletClient();
-            
+            if (primaryWallet && isEthereumWallet(primaryWallet)) {
+                const walletClient = await primaryWallet.getWalletClient()
+
                 console.log("wallet", result)
                 const config: StoryConfig = {
                     wallet: walletClient,
@@ -38,16 +43,20 @@ const RevenueClaimComponent = ({ childID }:
                     royaltyVaultIpId: childID as Address,
                     txOptions: { waitForTransaction: true },
                 })
-                
-                console.log(`Took a snapshot with ID ${snapshotResponse.snapshotId} at transaction hash ${snapshotResponse.txHash}`)
-                const claimRevenueResponse: ClaimRevenueResponse = await client.royalty.claimRevenue({
-                    snapshotIds: [snapshotResponse.snapshotId as bigint],
-                    royaltyVaultIpId: childID as Address,
-                    token: "0x91f6F05B08c16769d3c85867548615d270C42fC7",
-                    txOptions: { waitForTransaction: true },
-                })
-                console.log(`Claimed revenue ${claimRevenueResponse.claimableToken} at transaction hash ${claimRevenueResponse.txHash}`)
-                
+
+                console.log(
+                    `Took a snapshot with ID ${snapshotResponse.snapshotId} at transaction hash ${snapshotResponse.txHash}`
+                )
+                const claimRevenueResponse: ClaimRevenueResponse =
+                    await client.royalty.claimRevenue({
+                        snapshotIds: [snapshotResponse.snapshotId as bigint],
+                        royaltyVaultIpId: childID as Address,
+                        token: "0x91f6F05B08c16769d3c85867548615d270C42fC7",
+                        txOptions: { waitForTransaction: true },
+                    })
+                console.log(
+                    `Claimed revenue ${claimRevenueResponse.claimableToken} at transaction hash ${claimRevenueResponse.txHash}`
+                )
             }
         } catch (error) {
             console.error("Error registering IPA:", error)
@@ -58,12 +67,16 @@ const RevenueClaimComponent = ({ childID }:
 
     return (
         <div>
-            <button onClick={handleRegisterIPA} disabled={loading}>
-                {loading ? "Registering..." : "Register IPA"}
+            <button
+                onClick={handleRegisterIPA}
+                disabled={loading}
+                style={{ position: "fixed", right: openChat ? "435px" : "140px" }}
+                className="btn btn-outline bottom-25 bg-white"
+            >
+                {loading ? "Registering..." : "Claim Revenue"}
             </button>
         </div>
     )
 }
-
 
 export default RevenueClaimComponent
