@@ -52,6 +52,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://daip.xyz',
 ]
 
+CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
