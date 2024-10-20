@@ -1,1 +1,1 @@
-https://onramp-sandbox.gatefi.com/?merchantId=3f68e9a6-5886-4d24-bb3b-b075033d51c1&cryptoCurrency=eth&cryptoAmount=0.1&cryptoAmountLock=True&cryptoCurrencyLock=True&fiatCurrency=USD&fiatCurrencyLock=True&wallet=0xe5107dee9CcC8054210FF6129cE15Eaa5bbcB1c0
+https://onramp-sandbox.gatefi.com/?merchantId=3f68e9a6-5886-4d24-bb3b-b075033d51c1&cryptoCurrency=eth&cryptoAmount=0.01&cryptoAmountLock=True&cryptoCurrencyLock=True&fiatCurrency=USD&fiatCurrencyLock=True&wallet=0xe5107dee9CcC8054210FF6129cE15Eaa5bbcB1c0
