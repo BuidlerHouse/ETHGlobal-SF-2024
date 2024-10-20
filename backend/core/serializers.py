@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models import CodeBlock
-
 class CodeBlockSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
+    parent = serializers.CharField(required=False, allow_null=True)
 
     class Meta:
         model = CodeBlock
@@ -15,10 +15,10 @@ class CodeBlockSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         return representation
-
+    
     def validate(self, data):
         parent = data.get('parent')
-        if isinstance(parent, str):
+        if parent:
             try:
                 parent_obj = CodeBlock.objects.get(token_id=parent)
                 data['parent'] = parent_obj
