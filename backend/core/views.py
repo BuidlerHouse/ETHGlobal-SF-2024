@@ -5,6 +5,9 @@ from rest_framework.permissions import AllowAny
 from .models import CodeBlock
 from .serializers import CodeBlockSerializer
 
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -51,3 +54,9 @@ class RootAPIView(APIView):
 
     def get(self, request):
         return Response(asyncio.run(self.async_get(request)))
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def message_receive_http(request):
+    print(f"IP: {request.META['REMOTE_ADDR']}, Headers: {request.headers}, Body: {request.body.decode('utf-8')}")      
+    

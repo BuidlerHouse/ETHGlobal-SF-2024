@@ -89,3 +89,11 @@ To support the Story Protocol Iliad testnet, we've added Network Configuration t
 This helps us with monetization from customer and enhances the user interaction experience.
 
 Code: frontend/src/components/DynamicModel/WalletWidget.tsx#7
+
+### Unlimit 
+
+In Daip code block cases, we use Unlimit for user onramp with host module in sandbox env.
+
+Schema Url: https://onramp-sandbox.gatefi.com/?merchantId={merchantId}&cryptoCurrency=eth&cryptoAmount={NFT_FEE}&cryptoAmountLock=True&cryptoCurrencyLock=True&fiatCurrency=USD&fiatCurrencyLock=True&wallet={AGENT_ADDRESS}
+We want users to pay with USD to mint NFT, when we receive the onramp.sucess event, we mint NFT to user by the agent wallet after blocks confirmation.
+
