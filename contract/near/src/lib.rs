@@ -57,6 +57,7 @@ impl Contract {
         self.price_per_token = price;
     }
 
+    #[payable]
     pub fn chat(&mut self, request_id: String, message: String) {
         let required_deposit = (message.len() as u128) * self.price_per_token + self.max_token_output_length * self.price_per_token;
         // TODO: pre-payment for max token output length
@@ -78,7 +79,8 @@ impl Contract {
             Promise::new(env::predecessor_account_id()).transfer(attached_deposit - required_deposit);
         }
     }
-
+    
+    #[payable]
     pub fn reply(&mut self, full_request_id: String, message: String) {
         assert_eq!(env::signer_account_id(), self.owner, "Forbidden");
         if message.len() as u128 > self.max_token_output_length {
