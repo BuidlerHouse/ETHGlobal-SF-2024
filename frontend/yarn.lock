@@ -241,7 +241,7 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
-"@babel/parser@^7.13.16", "@babel/parser@^7.20.0", "@babel/parser@^7.25.7", "@babel/parser@^7.25.8":
+"@babel/parser@^7.1.0", "@babel/parser@^7.13.16", "@babel/parser@^7.20.0", "@babel/parser@^7.20.7", "@babel/parser@^7.25.7", "@babel/parser@^7.25.8":
   version "7.25.8"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.25.8.tgz#f6aaf38e80c36129460c1657c0762db584c9d5e2"
   integrity sha512-HcttkxzdPucv3nNFmfOOMfFf64KgdJVqm1KaCm25dPGMLElo9nsLvXeJECQg8UzPuBGLyTSA0ZzqCtDSzKTEoQ==
@@ -647,6 +647,11 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/standalone@^7.25.8":
+  version "7.25.8"
+  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.25.8.tgz#054a0c7c28275527f05cba4c17fe45cab8e9c638"
+  integrity sha512-UvRanvLCGPRscJ5Rw9o6vUBS5P+E+gkhl6eaokrIN+WM1kUkmj254VZhyihFdDZVDlI3cPcZoakbJJw24QPISw==
+
 "@babel/template@^7.0.0", "@babel/template@^7.25.7":
   version "7.25.7"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.25.7.tgz#27f69ce382855d915b14ab0fe5fb4cbf88fa0769"
@@ -669,7 +674,7 @@
     debug "^4.3.1"
     globals "^11.1.0"
 
-"@babel/types@^7.20.0", "@babel/types@^7.24.7", "@babel/types@^7.25.7", "@babel/types@^7.25.8":
+"@babel/types@^7.0.0", "@babel/types@^7.20.0", "@babel/types@^7.20.7", "@babel/types@^7.24.7", "@babel/types@^7.25.7", "@babel/types@^7.25.8":
   version "7.25.8"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.25.8.tgz#5cf6037258e8a9bcad533f4979025140cb9993e1"
   integrity sha512-JWtuCu8VQsMladxVz/P4HzHUGCAwpuqacmowgXFs5XjxIgKuNjnLokQzuVjlTvIzODaDmpjT3oxcC48vyk9EWg==
@@ -2644,6 +2649,46 @@
   dependencies:
     sha256-uint8array "^0.10.7"
 
+"@types/babel__core@^7.1.0":
+  version "7.20.5"
+  resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.5.tgz#3df15f27ba85319caa07ba08d0721889bb39c017"
+  integrity sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==
+  dependencies:
+    "@babel/parser" "^7.20.7"
+    "@babel/types" "^7.20.7"
+    "@types/babel__generator" "*"
+    "@types/babel__template" "*"
+    "@types/babel__traverse" "*"
+
+"@types/babel__generator@*":
+  version "7.6.8"
+  resolved "https://registry.yarnpkg.com/@types/babel__generator/-/babel__generator-7.6.8.tgz#f836c61f48b1346e7d2b0d93c6dacc5b9535d3ab"
+  integrity sha512-ASsj+tpEDsEiFr1arWrlN6V3mdfjRMZt6LtK/Vp/kreFLnr5QH5+DhvD5nINYZXzwJvXeGq+05iUXcAzVrqWtw==
+  dependencies:
+    "@babel/types" "^7.0.0"
+
+"@types/babel__standalone@^7.1.7":
+  version "7.1.7"
+  resolved "https://registry.yarnpkg.com/@types/babel__standalone/-/babel__standalone-7.1.7.tgz#8ab09548a24f54015e7d84a55486148180bc4ace"
+  integrity sha512-4RUJX9nWrP/emaZDzxo/+RYW8zzLJTXWJyp2k78HufG459HCz754hhmSymt3VFOU6/Wy+IZqfPvToHfLuGOr7w==
+  dependencies:
+    "@types/babel__core" "^7.1.0"
+
+"@types/babel__template@*":
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@types/babel__template/-/babel__template-7.4.4.tgz#5672513701c1b2199bc6dad636a9d7491586766f"
+  integrity sha512-h/NUaSyG5EyxBIp8YRxo4RMe2/qQgvyowRwVMzhYhBCONbW8PUsg4lkFMrhgZhUe5z3L3MiLDuvyJ/CaPa2A8A==
+  dependencies:
+    "@babel/parser" "^7.1.0"
+    "@babel/types" "^7.0.0"
+
+"@types/babel__traverse@*":
+  version "7.20.6"
+  resolved "https://registry.yarnpkg.com/@types/babel__traverse/-/babel__traverse-7.20.6.tgz#8dc9f0ae0f202c08d8d4dab648912c8d6038e3f7"
+  integrity sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==
+  dependencies:
+    "@babel/types" "^7.20.7"
+
 "@types/bn.js@^5.1.0":
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/@types/bn.js/-/bn.js-5.1.6.tgz#9ba818eec0c85e4d3c679518428afdf611d03203"
@@ -2747,6 +2792,11 @@
     "@types/node" "*"
     pg-protocol "*"
     pg-types "^4.0.1"
+
+"@types/prismjs@^1.26.0":
+  version "1.26.4"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.26.4.tgz#1a9e1074619ce1d7322669e5b46fbe823925103a"
+  integrity sha512-rlAnzkW2sZOjbqZ743IHUhFcvzaGbqijwOu8QZnZCjfQzBqFE3s4lOTJEsxikImav9uzz/42I+O7YUs1mWgMlg==
 
 "@types/prop-types@*":
   version "15.7.13"
@@ -8525,6 +8575,14 @@ pretty-ms@7.0.1:
   dependencies:
     parse-ms "^2.1.0"
 
+prism-react-renderer@^2.0.6:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-2.4.0.tgz#c5ea692029c2f8b3fd04f63662d04ffd4eaf10a0"
+  integrity sha512-327BsVCD/unU4CNLZTWVHyUHKnsqcvj2qbPlQ8MiBE2eq2rgctjigPA1Gp9HLF83kZ20zNN6jgizHJeEsyFYOw==
+  dependencies:
+    "@types/prismjs" "^1.26.0"
+    clsx "^2.0.0"
+
 prisma@^5.12.1:
   version "5.21.0"
   resolved "https://registry.yarnpkg.com/prisma/-/prisma-5.21.0.tgz#4f3d070e873f8f2a584eb060b27a9ffa815b03b7"
@@ -8781,6 +8839,15 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-live@^4.1.7:
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/react-live/-/react-live-4.1.7.tgz#a451054bee78e6c9b4410dfc3940b318d9bc7880"
+  integrity sha512-NTzl0POOAW3dkp7+QL30duOrIu2Vzf2LHdx4TaQ0BqOAtQcSTKEXujfm9jR2VoCHko0oi35PYp38yKQBXz4mrg==
+  dependencies:
+    prism-react-renderer "^2.0.6"
+    sucrase "^3.31.0"
+    use-editable "^2.3.3"
 
 react-native-get-random-values@1.11.0:
   version "1.11.0"
@@ -9751,7 +9818,7 @@ styled-jsx@5.1.1:
   dependencies:
     client-only "0.0.1"
 
-sucrase@^3.32.0:
+sucrase@^3.31.0, sucrase@^3.32.0:
   version "3.35.0"
   resolved "https://registry.yarnpkg.com/sucrase/-/sucrase-3.35.0.tgz#57f17a3d7e19b36d8995f06679d121be914ae263"
   integrity sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==
@@ -10297,6 +10364,11 @@ use-callback-ref@^1.3.0:
   integrity sha512-elOQwe6Q8gqZgDA8mrh44qRTQqpIHDcZ3hXTLjBe1i4ph8XpNJnO+aQf3NaG+lriLopI4HMx9VjQLfPQ6vhnoA==
   dependencies:
     tslib "^2.0.0"
+
+use-editable@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/use-editable/-/use-editable-2.3.3.tgz#a292fe9ba4c291cd28d1cc2728c75a5fc8d9a33f"
+  integrity sha512-7wVD2JbfAFJ3DK0vITvXBdpd9JAz5BcKAAolsnLBuBn6UDDwBGuCIAGvR3yA2BNKm578vAMVHFCWaOcA+BhhiA==
 
 use-sidecar@^1.1.2:
   version "1.1.2"

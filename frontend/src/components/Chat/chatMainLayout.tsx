@@ -9,9 +9,44 @@ type MessageTypes = {
 }
 
 const ChatMainLayout: React.FC = () => {
-    const { openChat, setOpenChat } = useUser()
+    const { openChat, setOpenChat, code, setCode } = useUser()
     const [messages, setMessages] = useState<MessageTypes[]>([])
     const [input, setInput] = useState<string>("")
+
+    function extractCodeAndText(response: string): { code: string; text: string } {
+        // Define the regular expression to find the code block
+        const codeRegex = /```([^`]*)```/g
+
+        // Initialize variables to store the extracted code and text
+        let code = ""
+        let text = response.replace(codeRegex, (match, capturedCode) => {
+            code = capturedCode.trim() // Save the code and trim any extra spaces or newlines
+            return "" // Replace the code block with an empty string
+        })
+
+        // Clean up the text by trimming extra whitespace
+        text = text.trim()
+        text = text.replace("Here's the modified code:", "")
+        text = text.replace("Here's the updated code:", "")
+        text = text.replace("Here's the corrected code:", "")
+        text = text.replace("Here's the fixed code:", "")
+        text = text.replace("Here's the code with the changes:", "")
+        text = text.replace("Here's the code with the corrections:", "")
+        text = text.replace("Here's the code with the modifications:", "")
+        text = text.replace("Here's the code with the edits:", "")
+        text = text.replace("Here's the code with the updates:", "")
+        text = text.replace("Here's the code with the amendments:", "")
+        text = text.replace("Here's the code with the revisions:", "")
+        text = text.replace("Here's the code with the alterations:", "")
+        text = text.replace("Here's the code with the modifications:", "")
+        code = code.replace("jsx", "")
+        code = code.replace("javascript", "")
+        code = code.replace("typescript", "")
+        code = code.replace("html", "")
+        code = code.replace("css", "")
+        // Return an object containing both the code and the remaining text
+        return { code, text }
+    }
 
     const handleSend = () => {
         if (input.trim()) {
@@ -34,16 +69,22 @@ const ChatMainLayout: React.FC = () => {
                 Authorization: `Bearer ${JSON.parse(userToken)}`,
             },
             body: JSON.stringify({
-                messages: [...messages, { content: input, role: "user" }],
+                messages: [
+                    ...messages,
+                    { content: input, role: "user" },
+                    { content: code[0], role: "user" },
+                ],
             }),
         })
             .then((res) => res.json())
             .then((data) => {
+                const { code, text } = extractCodeAndText(data.data.content[0].text)
+                setCode([code])
                 setMessages((prev) => {
                     return [
                         ...prev.slice(0, -1),
                         {
-                            content: data.data.content[0].text,
+                            content: text,
                             role: "assistant",
                             status: "delivered",
                         },
@@ -56,7 +97,7 @@ const ChatMainLayout: React.FC = () => {
         <>
             {openChat && (
                 <div
-                    className="fixed z-100 gap-2 left-5 bottom-5 w-[200px] h-[500px] flex flex-col justify-end"
+                    className="fixed z-100 gap-2 left-5 bottom-5 w-[200px] h-[500px] flex flex-col justify-end bg-white"
                     style={{
                         padding: "6px",
                         border: "5px solid #000",
@@ -110,7 +151,7 @@ const ChatMainLayout: React.FC = () => {
                         onClick={() => {
                             setOpenChat(false)
                         }}
-                        className="btn btn-square btn-outline absolute -right-[60px] -bottom-[5px]"
+                        className="btn btn-square btn-outline absolute -right-[60px] bg-white -bottom-[5px]"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

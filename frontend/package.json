@@ -9,10 +9,12 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@babel/standalone": "^7.25.8",
         "@dynamic-labs/ethereum": "^3.4.0",
         "@dynamic-labs/flow": "^3.4.0",
         "@dynamic-labs/sdk-react-core": "^3.4.0",
         "@prisma/client": "^5.12.1",
+        "@types/babel__standalone": "^7.1.7",
         "daisyui": "^4.10.1",
         "date-fns": "^3.6.0",
         "ethereumjs-util": "^7.1.5",
@@ -24,6 +26,7 @@
         "react": "^18",
         "react-date-picker": "^10.6.0",
         "react-dom": "^18",
+        "react-live": "^4.1.7",
         "sharp": "^0.33.3",
         "viem": "1"
     },
