@@ -78,5 +78,6 @@ Debug contract compilation: set rustup to 1.77, higher version maybe cause deser
 
 dAIp leverages Walrus to securely upload and store files on its decentralized network, linking them to SUI objects. This empowers users to interact with SUI objects for future transactions, dApps customization, and asset representation in a seamless, verifiable manner, ultimately catalyzing innovative solutions in the community.
 
-Code path: backend/core/walrus_upload.py    
-References: https://github.com/MystenLabs/walrus-docs/tree/main/examples
+- Code path: backend/core/walrus_upload.py    
+- References: https://github.com/MystenLabs/walrus-docs/tree/main/examples
+- CodeBlock Metadata Storage: https://testnet.suivision.xyz/object/0x12fabab08a72acd508ebbfa1ab4f6379777c6fa2d7c4c4438e1f8a158883d9c5
