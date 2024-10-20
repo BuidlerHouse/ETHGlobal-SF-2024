@@ -18,7 +18,12 @@ const router = useRouter()
             <h1 className="text-3xl font-bold animate-pulse">dAIp</h1>
             <p className="px-[20%]">
                 <strong className="text-[20px]">dAIp</strong> is a website builder for creating
-                composable, IP-protected Dapps, empowering builders&apos; monetization through AI
+                <span className="glitch">
+                    <span aria-hidden="true">composable</span>
+                    composable
+                    <span aria-hidden="true">composable</span>
+                </span>
+                , IP-protected Dapps, empowering builders&apos; monetization through AI
                 and royalties.
             </p>
             <button
