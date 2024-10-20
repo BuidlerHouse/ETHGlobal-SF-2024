@@ -96,10 +96,8 @@ const ChatMainLayout: React.FC = () => {
   };
 
   const handleMint = () => {
-    // Mint
-    setTimeout(() => {
     setHasMinted(true);
-    }, 8000);
+    alert('Your NFT has been minted! Get ready to battle!');
   };
 
   return (
@@ -204,8 +202,25 @@ const ChatMainLayout: React.FC = () => {
             <p style={{ fontSize: '1.25rem', color: '#aaa', marginTop: '50%' }}>
               Mint your NFT to start battling!
             </p> {/* Mint Button */}
-        {!hasMinted && (<button onClick={handleMint}>
-          <RegisterIPAComponent /></button>
+        {!hasMinted && (
+          <a
+            href="https://onramp-sandbox.gatefi.com/?merchantId=3f68e9a6-5886-4d24-bb3b-b075033d51c1&cryptoCurrency=eth&cryptoAmount=0.1&cryptoAmountLock=True&cryptoCurrencyLock=True&fiatCurrency=USD&fiatCurrencyLock=True&wallet=0xe5107dee9CcC8054210FF6129cE15Eaa5bbcB1c0"
+            style={{
+              backgroundColor: '#ffcc00',
+              color: '#000',
+              padding: '0.75rem 1.5rem',
+              fontSize: '1.25rem',
+              borderRadius: '0.5rem',
+              border: 'none',
+              marginTop: '2rem',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}
+          >
+            Buy NFT with USD
+          </a>
         )}
             </>
           )}
