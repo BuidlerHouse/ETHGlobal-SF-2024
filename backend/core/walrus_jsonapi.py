@@ -24,7 +24,7 @@ def string_to_bytes(input_str, encoding='utf-8'):
 
 
 # Upload the file to the Walrus service
-def upload_to_Walrus(tmp):
+def upload_to_walrus(tmp):
     store_json_command = f"""{{ "config" : "{PATH_TO_WALRUS_CONFIG}",
         "command" : {{ "store" :
         {{ "file" : "{tmp.name}", "epochs" : 2  }}}}
@@ -69,11 +69,14 @@ def upload_to_Walrus(tmp):
     # finally:
     #     os.unlink(tmp.name)
 
+def test():
+    test_str = "HelloHelloWorldTestTest"
+    test_byte = string_to_bytes(test_str)
+    print(upload_to_walrus(test_byte))
+
 
 if __name__ == "__main__":
     # Simple test 
-    test_str = "HelloHelloWorldTestTest"
-    test_byte = string_to_bytes(test_str)
-    print(upload_to_Walrus(test_byte))
+    test()
 
 
