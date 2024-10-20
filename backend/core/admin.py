@@ -12,7 +12,7 @@ class CodeBlockAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
     fieldsets = (
         (None, {
-            'fields': ('wallet_address', 'name', 'parent', 'code')
+            'fields': ('wallet_address', 'name', 'parent', 'code', 'token_id')
         }),
         ('Timestamps', {
             'fields': ('created_at', 'updated_at'),

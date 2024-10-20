@@ -5,6 +5,7 @@ class CodeBlock(models.Model):
     name = models.CharField(max_length=100, default='', blank=True)
     wallet_address = models.CharField(max_length=100, default='', blank=True)
     code = models.TextField(default='', blank=True)
+    token_id = models.CharField(max_length=100, default='', blank=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
