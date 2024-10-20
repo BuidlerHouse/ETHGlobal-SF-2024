@@ -9,7 +9,7 @@ import requests
 
 from pathlib import Path
 
-from utils import num_to_blob_id, PATH_TO_WALRUS, PATH_TO_WALRUS_CONFIG, FULL_NODE_URL
+from .utils import num_to_blob_id, PATH_TO_WALRUS, PATH_TO_WALRUS_CONFIG, FULL_NODE_URL
 
 
 
