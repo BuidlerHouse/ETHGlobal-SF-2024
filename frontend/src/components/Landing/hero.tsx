@@ -1,14 +1,12 @@
 "use client"
 import { useNotification } from "@/context/notificationContext"
 import { useUser } from "@/context/userContext"
+import CollectRoyaltyIPAComponent from "@/library/story/RecieveRoyaltyToken"
 import RegisterIPAComponent from "@/library/story/RegisterIPA"
-<<<<<<< HEAD
-=======
+import RevenueClaimComponent from "@/library/story/RevenueClaim"
 import DerivativeIPAComponent from "@/library/story/derivativeIPA"
 import WrappedRegisterIPAComponent from "@/library/story/RegisterIPA"
-import CollectRoyaltyIPAComponent from "@/library/story/RecieveRoyaltyToken"
 import AttachLicenseComponent from "@/library/story/AttachLicense"
->>>>>>> 6b92b46 (More method)
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core"
 import { useRouter } from "next/navigation"
 import React from "react"
@@ -43,7 +41,7 @@ const Hero: React.FC = () => {
             >
                 Start Design
             </button>
-            {primaryWallet?.address && <RegisterIPAComponent />}
+            {primaryWallet?.address && <RevenueClaimComponent childID = "0x22Ed469e99aB79bd65f541556EDFFAa84a1C8E04"/>}
         </div>
     )
 }
