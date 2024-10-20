@@ -6,7 +6,7 @@ import { http } from 'viem'
 import { privateKeyToAccount, Address, Account } from 'viem/accounts'
 import { uploadJSONToIPFS } from './utils/uploadToIpfs'
 import { createHash } from 'crypto'
-import { NFTContractAddress, NonCommercialSocialRemixingTermsId, RPCProviderUrl, account, CurrencyAddress } from './utils/utils'
+import { NFTContractAddress, NonCommercialSocialRemixingTermsId, RPCProviderUrl, CurrencyAddress } from './utils/utils'
 import { mintNFT } from './utils/mintNFT'
 
 const main = async function () {
