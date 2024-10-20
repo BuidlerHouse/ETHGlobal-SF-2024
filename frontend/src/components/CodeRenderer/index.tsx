@@ -1,10 +1,32 @@
 import { useUser } from "@/context/userContext"
 import React, { useState } from "react"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
+import { themes } from "prism-react-renderer" // Import themes
+
+const CollapsIcon = ({ reverse }: { reverse: boolean }) => {
+    return (
+        <svg
+            className={reverse ? "transform rotate-180 cursor-pointer" : "cursor-pointer"}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="M3 19V5" />
+            <path d="m13 6-6 6 6 6" />
+            <path d="M7 12h14" />
+        </svg>
+    )
+}
 
 const CodeEditor: React.FC = () => {
     const { code, setCode } = useUser()
-    const [show, setShow] = useState<"code" | "UI" | "">("UI")
+    const [show, setShow] = useState<"code" | "UI" | "">("")
 
     const handleCodeChange = (newCode: string, index: number) => {
         setCode((prev) => {
@@ -22,18 +44,26 @@ const CodeEditor: React.FC = () => {
         <div className="w-screen h-full">
             {code.map((c, i) => (
                 <LiveProvider code={c} language="typescript" scope={{ useState }} key={i}>
-                    <div className="flex gap-0 justify-between mb-4">
+                    <div className="flex gap-0 justify-between mb-4 absolute top-7 w-full px-3">
                         <button
-                            className="p-2 bg-blue-500 text-white rounded"
+                            className="p-2 btn bg-white text-black rounded cursor-pointer"
                             onClick={() => toggleShow("UI")}
                         >
-                            {show === "UI" ? "收纳 UI" : "展开 UI"}
+                            {show === "UI" ? (
+                                <CollapsIcon reverse={true} />
+                            ) : (
+                                <CollapsIcon reverse={false} />
+                            )}
                         </button>
                         <button
-                            className="p-2 bg-blue-500 text-white rounded"
+                            className="p-2 btn bg-white text-black rounded cursor-pointer"
                             onClick={() => toggleShow("code")}
                         >
-                            {show === "code" ? "收纳 Code" : "展开 Code"}
+                            {show === "code" ? (
+                                <CollapsIcon reverse={false} />
+                            ) : (
+                                <CollapsIcon reverse={true} />
+                            )}
                         </button>
                     </div>
                     <div className="flex gap-0 justify-between">
@@ -48,6 +78,8 @@ const CodeEditor: React.FC = () => {
                                     onChange={(newCode) => {
                                         handleCodeChange(newCode, i)
                                     }}
+                                    theme={themes.oceanicNext}
+                                    style={{ fontSize: "12px" }}
                                 />
                             </div>
                         )}
