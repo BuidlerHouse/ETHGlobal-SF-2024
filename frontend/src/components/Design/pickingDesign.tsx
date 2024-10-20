@@ -90,6 +90,12 @@ const PickingDesign: React.FC = () => {
                                         {/* Display dynamic tags */}
                                     </div>
                                 </div>
+                                <a
+                                    href="https://testnet.suivision.xyz/object/0x12fabab08a72acd508ebbfa1ab4f6379777c6fa2d7c4c4438e1f8a158883d9c5"
+                                    className="card-footer absolute left-1 bottom-1 text-[10px] underline"
+                                >
+                                    Document Hash
+                                </a>
                             </div>
                         )
                     })}
