@@ -4,6 +4,7 @@ import DynamicProvider from "@/context/dynamic"
 import NavBar from "@/components/Navbar/navBar"
 import { UserProvider } from "@/context/userContext"
 import { NotificationProvider } from "@/context/notificationContext"
+import { StoryProvider } from "@story-protocol/react-sdk"
 
 export const metadata: Metadata = {
     title: "dAIp App",
@@ -18,14 +19,15 @@ export default function RootLayout({
     return (
         <html lang="en" data-theme="lofi">
             <body className="">
-                <UserProvider>
-                    <NotificationProvider>
-                        <DynamicProvider>
-                            {children}
-                            {/* <ThemeDropDown /> */}
-                        </DynamicProvider>
-                    </NotificationProvider>
-                </UserProvider>
+                
+                    <UserProvider>
+                        <NotificationProvider>
+                            <DynamicProvider>
+                                {children}
+                                {/* <ThemeDropDown /> */}
+                            </DynamicProvider>
+                        </NotificationProvider>
+                    </UserProvider>
             </body>
         </html>
     )
