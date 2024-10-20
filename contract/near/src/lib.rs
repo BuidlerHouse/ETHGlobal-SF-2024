@@ -14,7 +14,7 @@ mod util;
 pub const VERSION_CODE: &str  = "v1.0.0";
 pub const GAS_FOR_CALL: Gas = Gas(parse_gas!("20 Tgas") as u64);
 
-#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize)]
+#[derive(BorshDeserialize, BorshSerialize)]
 pub struct Conversation {
     pub messages: String,
     pub role: String,
@@ -113,6 +113,11 @@ impl Contract {
             .unwrap_or_else(|| {
                 Vector::new(StorageKey::RequestsConversation { request_id: full_request_id.clone() })
             });
-        conversations.to_vec()
+        conversations.iter().map(|conversation| {
+            json!({
+                "role": conversation.role,
+                "messages": conversation.messages
+            })
+        }).collect::<Vec<_>>()
     }
 }
