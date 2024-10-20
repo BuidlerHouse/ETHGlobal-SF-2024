@@ -54,7 +54,23 @@ https://explorer.testnet.near.org/transactions/2b9KTxb8z5oGrbmbsQgQVrGya7mCY2y87
 2. Reply by anonymous service provider:
 https://explorer.testnet.near.org/transactions/B3P4RSF3VPGnE4siNbbf8rhiRmynq1MEiAjGx9R1n32y
 
-Takeaway:Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error
+Takeaway:
+We find a bug while functionCall()
+rnative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Scheduling a call: daip.prelaunch.testnet.new()
+Doing account.functionCall()
+Receipt: FA8Xa2f6QdR97R8vPctShyazuYHquoyJZMa8HsMDnBtj
+        Failure [daip.prelaunch.testnet]: Error: Error happened while deserializing the module
+ServerTransactionError: Error happened while deserializing the module
+    at Object.parseResultError (/usr/local/lib/node_modules/near-cli/node_modules/near-api-js/lib/utils/rpc_errors.js:31:29)
+    at Account.signAndSendTransactionV2 (/usr/local/lib/node_modules/near-cli/node_modules/near-api-js/lib/account.js:160:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async scheduleFunctionCall (/usr/local/lib/node_modules/near-cli/commands/call.js:57:38)
+    at async Object.handler (/usr/local/lib/node_modules/near-cli/utils/exit-on-error.js:52:9) {
+  type: 'Deserialization',
+  context: undefined,
+Debug contract compilation: set rustup to 1.77, higher version maybe cause deseralization error
 
 ### Walrus
 
